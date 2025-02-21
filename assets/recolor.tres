@@ -1,0 +1,116 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://dadju1tha5035"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_merds"]
+parameter_name = "ColorParameter"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_uup3r"]
+operator = 4
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_bni3f"]
+source = 2
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_yrvc5"]
+operator = 7
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform vec4 ColorParameter : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
+
+
+
+void fragment() {
+// ColorParameter:12
+	vec4 n_out12p0 = ColorParameter;
+
+
+	vec4 n_out7p0;
+// Texture2D:7
+	n_out7p0 = texture(TEXTURE, UV);
+
+
+	vec3 n_out2p0;
+// ColorOp:2
+	{
+		float base = vec3(n_out12p0.xyz).x;
+		float blend = vec3(n_out7p0.xyz).x;
+		if (base < 0.5) {
+			n_out2p0.x = 2.0 * base * blend;
+		} else {
+			n_out2p0.x = 1.0 - 2.0 * (1.0 - blend) * (1.0 - base);
+		}
+	}
+	{
+		float base = vec3(n_out12p0.xyz).y;
+		float blend = vec3(n_out7p0.xyz).y;
+		if (base < 0.5) {
+			n_out2p0.y = 2.0 * base * blend;
+		} else {
+			n_out2p0.y = 1.0 - 2.0 * (1.0 - blend) * (1.0 - base);
+		}
+	}
+	{
+		float base = vec3(n_out12p0.xyz).z;
+		float blend = vec3(n_out7p0.xyz).z;
+		if (base < 0.5) {
+			n_out2p0.z = 2.0 * base * blend;
+		} else {
+			n_out2p0.z = 1.0 - 2.0 * (1.0 - blend) * (1.0 - base);
+		}
+	}
+
+
+	vec3 n_out9p0;
+// ColorOp:9
+	vec3 n_in9p1 = vec3(0.00000, 0.00000, 0.00000);
+	{
+		float base = n_out2p0.x;
+		float blend = n_in9p1.x;
+		if (base < 0.5) {
+			n_out9p0.x = (base * (blend + 0.5));
+		} else {
+			n_out9p0.x = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+	{
+		float base = n_out2p0.y;
+		float blend = n_in9p1.y;
+		if (base < 0.5) {
+			n_out9p0.y = (base * (blend + 0.5));
+		} else {
+			n_out9p0.y = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+	{
+		float base = n_out2p0.z;
+		float blend = n_in9p1.z;
+		if (base < 0.5) {
+			n_out9p0.z = (base * (blend + 0.5));
+		} else {
+			n_out9p0.z = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+
+
+// Output:0
+	COLOR.rgb = n_out9p0;
+
+
+}
+"
+graph_offset = Vector2(-418.227, -5.44899)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(500, 260)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorOp_uup3r")
+nodes/fragment/2/position = Vector2(-80, 260)
+nodes/fragment/7/node = SubResource("VisualShaderNodeTexture_bni3f")
+nodes/fragment/7/position = Vector2(-500, 220)
+nodes/fragment/9/node = SubResource("VisualShaderNodeColorOp_yrvc5")
+nodes/fragment/9/position = Vector2(180, 300)
+nodes/fragment/12/node = SubResource("VisualShaderNodeColorParameter_merds")
+nodes/fragment/12/position = Vector2(-520, 0)
+nodes/fragment/connections = PackedInt32Array(7, 0, 2, 1, 2, 0, 9, 0, 9, 0, 0, 0, 12, 0, 2, 0)

@@ -1,0 +1,198 @@
+[gd_scene load_steps=14 format=3 uid="uid://b1tnns8p63rtn"]
+
+[ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_x7nmm"]
+[ext_resource type="PackedScene" uid="uid://c6uwi7if3vw7l" path="res://scenes/player.tscn" id="2_5t31v"]
+[ext_resource type="Texture2D" uid="uid://b2b7n46mmflnc" path="res://assets/placeholder/icon.svg" id="2_fxr3v"]
+[ext_resource type="Texture2D" uid="uid://cko7gpaj105fy" path="res://assets/placeholder/base_circle_fill-export.png" id="2_ycvdk"]
+[ext_resource type="Texture2D" uid="uid://dphtkb2phhpry" path="res://assets/placeholder/clouds.png" id="3_enf2l"]
+[ext_resource type="Script" path="res://scripts/dropletGenerator.gd" id="3_w1s5b"]
+[ext_resource type="Script" path="res://scripts/tempScoreDisplay.gd" id="7_1yhgt"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_62kpd"]
+parameter_name = "ColorParameter"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_dp30t"]
+operator = 4
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_hbdlu"]
+source = 2
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_5k63n"]
+operator = 7
+
+[sub_resource type="VisualShader" id="VisualShader_3egih"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform vec4 ColorParameter : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
+
+
+
+void fragment() {
+// ColorParameter:12
+	vec4 n_out12p0 = ColorParameter;
+
+
+	vec4 n_out7p0;
+// Texture2D:7
+	n_out7p0 = texture(TEXTURE, UV);
+
+
+	vec3 n_out2p0;
+// ColorOp:2
+	{
+		float base = vec3(n_out12p0.xyz).x;
+		float blend = vec3(n_out7p0.xyz).x;
+		if (base < 0.5) {
+			n_out2p0.x = 2.0 * base * blend;
+		} else {
+			n_out2p0.x = 1.0 - 2.0 * (1.0 - blend) * (1.0 - base);
+		}
+	}
+	{
+		float base = vec3(n_out12p0.xyz).y;
+		float blend = vec3(n_out7p0.xyz).y;
+		if (base < 0.5) {
+			n_out2p0.y = 2.0 * base * blend;
+		} else {
+			n_out2p0.y = 1.0 - 2.0 * (1.0 - blend) * (1.0 - base);
+		}
+	}
+	{
+		float base = vec3(n_out12p0.xyz).z;
+		float blend = vec3(n_out7p0.xyz).z;
+		if (base < 0.5) {
+			n_out2p0.z = 2.0 * base * blend;
+		} else {
+			n_out2p0.z = 1.0 - 2.0 * (1.0 - blend) * (1.0 - base);
+		}
+	}
+
+
+	vec3 n_out9p0;
+// ColorOp:9
+	vec3 n_in9p1 = vec3(0.00000, 0.00000, 0.00000);
+	{
+		float base = n_out2p0.x;
+		float blend = n_in9p1.x;
+		if (base < 0.5) {
+			n_out9p0.x = (base * (blend + 0.5));
+		} else {
+			n_out9p0.x = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+	{
+		float base = n_out2p0.y;
+		float blend = n_in9p1.y;
+		if (base < 0.5) {
+			n_out9p0.y = (base * (blend + 0.5));
+		} else {
+			n_out9p0.y = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+	{
+		float base = n_out2p0.z;
+		float blend = n_in9p1.z;
+		if (base < 0.5) {
+			n_out9p0.z = (base * (blend + 0.5));
+		} else {
+			n_out9p0.z = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+
+
+// Output:0
+	COLOR.rgb = n_out9p0;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(500, 260)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorOp_dp30t")
+nodes/fragment/2/position = Vector2(-80, 260)
+nodes/fragment/7/node = SubResource("VisualShaderNodeTexture_hbdlu")
+nodes/fragment/7/position = Vector2(-500, 220)
+nodes/fragment/9/node = SubResource("VisualShaderNodeColorOp_5k63n")
+nodes/fragment/9/position = Vector2(180, 300)
+nodes/fragment/12/node = SubResource("VisualShaderNodeColorParameter_62kpd")
+nodes/fragment/12/position = Vector2(-520, 0)
+nodes/fragment/connections = PackedInt32Array(7, 0, 2, 1, 2, 0, 9, 0, 9, 0, 0, 0, 12, 0, 2, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_77wvn"]
+shader = SubResource("VisualShader_3egih")
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)
+
+[node name="World" type="Node2D" node_paths=PackedStringArray("target_color_indicator")]
+position = Vector2(294, 8.25)
+script = ExtResource("1_x7nmm")
+target_color_indicator = NodePath("Target Color")
+
+[node name="Target Color" type="Sprite2D" parent="."]
+z_index = 4
+material = SubResource("ShaderMaterial_77wvn")
+position = Vector2(-376, 34.75)
+texture = ExtResource("2_ycvdk")
+
+[node name="Arena" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(115.75, 322.75)
+scale = Vector2(6.97266, 4.79688)
+texture = ExtResource("2_fxr3v")
+
+[node name="Cloud" type="Node2D" parent="."]
+position = Vector2(-1084, -372)
+scale = Vector2(0.571027, 0.502577)
+script = ExtResource("3_w1s5b")
+speed_range = Vector2(450, 650)
+height = -50.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="Cloud"]
+position = Vector2(2103.23, 753.616)
+texture = ExtResource("3_enf2l")
+
+[node name="Timer" type="Timer" parent="Cloud"]
+wait_time = 0.5
+autostart = true
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(110, 275.75)
+
+[node name="P1" parent="." instance=ExtResource("2_5t31v")]
+position = Vector2(-192, 500)
+player_id = 1
+
+[node name="P2" parent="." instance=ExtResource("2_5t31v")]
+position = Vector2(402, 500)
+collision_layer = 2
+collision_mask = 2
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="temp_scores" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("p1", "p2", "p1_score_label", "p2_score_label")]
+offset_left = 7.0
+offset_top = 500.0
+offset_right = 333.0
+offset_bottom = 642.0
+script = ExtResource("7_1yhgt")
+p1 = NodePath("../../P1")
+p2 = NodePath("../../P2")
+p1_score_label = NodePath("P1_score")
+p2_score_label = NodePath("P2_score")
+
+[node name="P1_score" type="RichTextLabel" parent="UI/temp_scores"]
+custom_minimum_size = Vector2(0, 69)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "P1: "
+
+[node name="P2_score" type="RichTextLabel" parent="UI/temp_scores"]
+custom_minimum_size = Vector2(0, 69)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "P2: "
+
+[connection signal="timeout" from="Cloud/Timer" to="Cloud" method="_on_timer_timeout"]
