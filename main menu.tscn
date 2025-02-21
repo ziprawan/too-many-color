@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://tob37jk20ip7"]
+[gd_scene load_steps=9 format=3 uid="uid://tob37jk20ip7"]
 
 [ext_resource type="Texture2D" uid="uid://d3flc5ow6bjcn" path="res://45908.jpg" id="1_alhr1"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_jduju"]
+[ext_resource type="PackedScene" uid="uid://ctuu6xxq026mm" path="res://options_menu.tscn" id="3_uyrot"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p4stf"]
 texture = ExtResource("1_alhr1")
@@ -69,7 +70,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 9
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 30
+text = "Too many color"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="start_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -83,7 +93,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_wufrp")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gb4bs")
 text = "Start Game"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="options_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -97,7 +107,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_wufrp")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gb4bs")
 text = "Options"
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="exit_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -112,26 +122,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_gb4bs")
 text = "Exit
 "
 
-[node name="Label" type="Label" parent="."]
+[node name="Options_Menu" parent="." instance=ExtResource("3_uyrot")]
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -156.0
-offset_top = -224.0
-offset_right = 153.0
-offset_bottom = -142.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_y = 5
-theme_override_font_sizes/font_size = 30
-text = "Too many color"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/start_button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/options_button" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/exit_button" to="." method="_on_exit_pressed"]
