@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1yq5104a2tds"
-path="res://.godot/imported/drrroplets.png-947045d3fb27255c709470073bbcc298.ctex"
+uid="uid://cftatcbvm11jh"
+path="res://.godot/imported/morganfreemantrue.png-f80f498d19146bf63211a8f7fa44ad75.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://drrroplets.png"
-dest_files=["res://.godot/imported/drrroplets.png-947045d3fb27255c709470073bbcc298.ctex"]
+source_file="res://assets/placeholder/morganfreemantrue.png"
+dest_files=["res://.godot/imported/morganfreemantrue.png-f80f498d19146bf63211a8f7fa44ad75.ctex"]
 
 [params]
 
