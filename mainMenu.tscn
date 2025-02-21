@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://tob37jk20ip7"]
 
-[ext_resource type="Texture2D" uid="uid://d3flc5ow6bjcn" path="res://45908.jpg" id="1_alhr1"]
-[ext_resource type="Script" path="res://main_menu.gd" id="1_jduju"]
-[ext_resource type="PackedScene" uid="uid://ctuu6xxq026mm" path="res://options_menu.tscn" id="3_uyrot"]
+[ext_resource type="Script" path="res://mainMenu.gd" id="1_c7q3s"]
+[ext_resource type="Texture2D" uid="uid://d3flc5ow6bjcn" path="res://45908.jpg" id="2_b57wa"]
+[ext_resource type="PackedScene" uid="uid://ctuu6xxq026mm" path="res://optionsMenu.tscn" id="3_lmu6m"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p4stf"]
-texture = ExtResource("1_alhr1")
+texture = ExtResource("2_b57wa")
 modulate_color = Color(0.332881, 0.332881, 0.332881, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x481w"]
@@ -44,7 +44,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jduju")
+script = ExtResource("1_c7q3s")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -122,7 +122,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_gb4bs")
 text = "Exit
 "
 
-[node name="Options_Menu" parent="." instance=ExtResource("3_uyrot")]
+[node name="Options_Menu" parent="." instance=ExtResource("3_lmu6m")]
 visible = false
 layout_mode = 1
 
