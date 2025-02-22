@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b1tnns8p63rtn"]
+[gd_scene load_steps=15 format=3 uid="uid://b1tnns8p63rtn"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_x7nmm"]
 [ext_resource type="PackedScene" uid="uid://c6uwi7if3vw7l" path="res://scenes/player.tscn" id="2_5t31v"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cko7gpaj105fy" path="res://assets/placeholder/base_circle_fill-export.png" id="2_ycvdk"]
 [ext_resource type="Texture2D" uid="uid://dphtkb2phhpry" path="res://assets/placeholder/clouds.png" id="3_enf2l"]
 [ext_resource type="Script" path="res://scripts/dropletGenerator.gd" id="3_w1s5b"]
-[ext_resource type="Script" path="res://scripts/targetColor.gd" id="4_0dd84"]
 [ext_resource type="PackedScene" uid="uid://dpmi6gmao34fi" path="res://scenes/gameplayUi.tscn" id="8_8tjxo"]
 [ext_resource type="Texture2D" uid="uid://htju07b34orj" path="res://assets/terraria_map_pack_for_swirft/mapArt/Backgrounds/BG_BP7.jpg" id="8_qfexp"]
 
@@ -128,9 +127,10 @@ nodes/fragment/connections = PackedInt32Array(7, 0, 2, 1, 2, 0, 9, 0, 9, 0, 0, 0
 shader = SubResource("VisualShader_3egih")
 shader_parameter/ColorParameter = Color(1, 1, 1, 1)
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" node_paths=PackedStringArray("target_color_indicator")]
 position = Vector2(294, 8.25)
 script = ExtResource("1_x7nmm")
+target_color_indicator = NodePath("Target Color")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -3
@@ -144,7 +144,6 @@ z_index = 4
 material = SubResource("ShaderMaterial_77wvn")
 position = Vector2(-376, 34.75)
 texture = ExtResource("2_ycvdk")
-script = ExtResource("4_0dd84")
 
 [node name="Arena" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -174,13 +173,11 @@ position = Vector2(110, 275.75)
 
 [node name="Player1" parent="." instance=ExtResource("2_5t31v")]
 position = Vector2(-192, 500)
-starting_position = Vector2(-192, 500)
 
 [node name="Player2" parent="." instance=ExtResource("2_5t31v")]
 position = Vector2(402, 500)
 collision_layer = 2
 collision_mask = 2
-starting_position = Vector2(402, 500)
 player_id = 1
 
 [node name="UI" parent="." instance=ExtResource("8_8tjxo")]

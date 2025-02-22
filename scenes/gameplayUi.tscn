@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dpmi6gmao34fi"]
+[gd_scene load_steps=19 format=4 uid="uid://dpmi6gmao34fi"]
 
 [ext_resource type="Texture2D" uid="uid://sgqlisbyoihc" path="res://assets/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat1.png" id="1_e1wqc"]
 [ext_resource type="Texture2D" uid="uid://dujuepc1bgyp8" path="res://assets/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat2.png" id="2_4p7u2"]
@@ -6,10 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dimlvroo3xhqt" path="res://assets/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat4.png" id="4_wba8x"]
 [ext_resource type="Texture2D" uid="uid://dfrgdj5do62sx" path="res://assets/terraria_map_pack_for_swirft/mapArt/BP7/BP7_SoftPlat1.png" id="5_jqwn5"]
 [ext_resource type="Texture2D" uid="uid://c7xwadmpdby2a" path="res://assets/terraria_map_pack_for_swirft/mapArt/BP7/BP7_SoftPlat2.png" id="6_jgx5v"]
-[ext_resource type="Script" path="res://scripts/tempScoreDisplay.gd" id="7_k4i8w"]
+[ext_resource type="Script" path="res://scripts/temp/tempScoreDisplay.gd" id="7_k4i8w"]
 [ext_resource type="Texture2D" uid="uid://bk5prp76u7pp4" path="res://assets/Untitled.png" id="7_tstng"]
 [ext_resource type="Texture2D" uid="uid://csupw52ccqyxk" path="res://assets/gatau.png" id="8_j0ilo"]
-[ext_resource type="Script" path="res://scripts/texture_progress_bar.gd" id="9_52mdf"]
+[ext_resource type="Script" path="res://scripts/textureProgressBar.gd" id="9_52mdf"]
+[ext_resource type="Script" path="res://scripts/temp/tempTimer.gd" id="10_0otv7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx4wm"]
 texture = ExtResource("1_e1wqc")
@@ -2770,11 +2771,28 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Player 1 :"
 
-[node name="ScoreLabel1" type="Label" parent="Scoreboard"]
-offset_left = -73.0
+[node name="ScoreLabel1" type="Label" parent="Scoreboard/LabelPLayer1"]
+offset_left = 76.0
+offset_right = 158.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="LabelPLayer2" type="Label" parent="Scoreboard"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 55.0
 offset_top = -7.0
-offset_right = 9.0
+offset_right = 126.0
 offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Player 2 :"
+
+[node name="ScoreLabel1" type="Label" parent="Scoreboard/LabelPLayer2"]
+offset_left = 76.0
+offset_right = 158.0
+offset_bottom = 23.0
 text = "0"
 
 [node name="ScoreBar1" type="TextureProgressBar" parent="Scoreboard"]
@@ -2788,44 +2806,68 @@ texture_under = ExtResource("7_tstng")
 texture_progress = ExtResource("8_j0ilo")
 script = ExtResource("9_52mdf")
 
-[node name="temp_scores" type="VBoxContainer" parent="." node_paths=PackedStringArray("p1_score_label", "p2_score_label", "p1_color_label", "p2_color_label", "target_color_label")]
+[node name="temp_timer" type="RichTextLabel" parent="Scoreboard"]
+offset_left = -98.0
+offset_top = 33.0
+offset_right = 103.0
+offset_bottom = 73.0
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "[center]35.00"
+script = ExtResource("10_0otv7")
+
+[node name="temp_scores" type="VBoxContainer" parent="." node_paths=PackedStringArray("p1_score_label", "p2_score_label", "p1_set_score", "p2_set_score", "p1_set_tally", "p2_set_tally", "target_color_label")]
 offset_left = 7.0
-offset_top = 500.0
+offset_top = 749.0
 offset_right = 778.0
-offset_bottom = 861.0
+offset_bottom = 1074.0
 script = ExtResource("7_k4i8w")
 p1_score_label = NodePath("P1_score")
 p2_score_label = NodePath("P2_score")
-p1_color_label = NodePath("P1_Color")
-p2_color_label = NodePath("P2_Color")
+p1_set_score = NodePath("P1_Set_score")
+p2_set_score = NodePath("P2_Set_score")
+p1_set_tally = NodePath("P1_Set_Tally")
+p2_set_tally = NodePath("P2_Set_Tally")
 target_color_label = NodePath("Target_Color")
 
 [node name="Target_Color" type="RichTextLabel" parent="temp_scores"]
-custom_minimum_size = Vector2(0, 69)
+custom_minimum_size = Vector2(0, 43.185)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 24
 text = "Target: "
 
-[node name="P1_Color" type="RichTextLabel" parent="temp_scores"]
-custom_minimum_size = Vector2(0, 69)
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 24
-text = "Color1: "
-
-[node name="P2_Color" type="RichTextLabel" parent="temp_scores"]
-custom_minimum_size = Vector2(0, 69)
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 24
-text = "Color2: "
-
 [node name="P1_score" type="RichTextLabel" parent="temp_scores"]
-custom_minimum_size = Vector2(0, 69)
+custom_minimum_size = Vector2(0, 43.185)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 24
 text = "P1: "
 
 [node name="P2_score" type="RichTextLabel" parent="temp_scores"]
-custom_minimum_size = Vector2(0, 69)
+custom_minimum_size = Vector2(0, 43.185)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 24
 text = "P2: "
+
+[node name="P1_Set_score" type="RichTextLabel" parent="temp_scores"]
+custom_minimum_size = Vector2(0, 43.185)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "Color1: "
+
+[node name="P2_Set_score" type="RichTextLabel" parent="temp_scores"]
+custom_minimum_size = Vector2(0, 43.185)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "Color2: "
+
+[node name="P1_Set_Tally" type="RichTextLabel" parent="temp_scores"]
+custom_minimum_size = Vector2(0, 43.185)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "Color1: "
+
+[node name="P2_Set_Tally" type="RichTextLabel" parent="temp_scores"]
+custom_minimum_size = Vector2(0, 43.185)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "Color2: "
