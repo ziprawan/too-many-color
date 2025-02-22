@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+signal droplet_collected
+
 @onready var sprite: Sprite2D = $Sprite
 
 @export var speed = 700.0
@@ -9,10 +11,12 @@ class_name Player
 
 var starting_position: Vector2
 var direction: Vector2
+var inverse_blend: bool = false
+var inverse_score: bool = false
 var score: float:
 	# Updates the value in game_manager as well
 	set(value):
-		game_manager.player_scores[player_id] = value
+		game_manager.player_scores[(1 - player_id) if inverse_score else player_id] = value
 		score = value
 var set_score: float:
 	set(value):
@@ -22,14 +26,27 @@ var set_score: float:
 var game_manager: GameManager
 
 func _ready() -> void:
+	# player_id validation
+	if player_id > 1 or player_id < 0:
+		push_error("player_id value can only be 0 or 1")
+
 	game_manager = get_tree().current_scene
 	game_manager.round_start.connect(on_round_start)
 	game_manager.round_end.connect(on_round_end)
 	game_manager.set_start.connect(on_set_start)
 	game_manager.set_end.connect(on_set_end)
 	sprite.material = sprite.material.duplicate()
-	print("player_id and its global position: ", player_id, " ", global_position)
+	
 	starting_position = global_position
+
+	add_to_group("players")
+
+	var events = get_node("/root/Worlds/Events")
+	if events:
+		events.speed_up.connect(_on_speed_up)
+		events.speed_down.connect(_on_speed_down)
+		events.inverse_blend.connect(_on_inverse_blend)
+		events.uno_reverse.connect(_on_uno_reverse)
 
 func _process(_delta):
 	# Movement Handling
@@ -78,5 +95,43 @@ func _on_collection_area_entered(area: Area2D) -> void:
 		score = 1000 - (Utils.get_deltaE(color, game_manager.current_target_color) ** 3.58)
 		game_manager.player_dE[player_id] = Utils.get_deltaE(color, game_manager.current_target_color)
 
+		if inverse_blend:
+			color.r = max(0, color.r - droplet_color.r)
+			color.g = max(0, color.g - droplet_color.g)
+			color.b = max(0, color.b - droplet_color.b)
+		else:
+			color = color.blend(droplet_color)
+
+		# Debug purpose
+		Globals.player_colors[(1 - player_id) if inverse_score else player_id] = color
+
 		# Free the object
 		droplet.queue_free()
+
+func _on_speed_up():
+	speed = 2 * speed
+
+	get_tree().create_timer(3).timeout.connect(func():
+		speed = speed / 2
+	)
+
+func _on_speed_down():
+	speed = speed / 2
+
+	get_tree().create_timer(1).timeout.connect(func():
+		speed = speed * 2
+	)
+
+func _on_uno_reverse():
+	inverse_score = true
+
+	get_tree().create_timer(5).timeout.connect(func():
+		inverse_score = false
+	)
+
+func _on_inverse_blend():
+	inverse_blend = true
+
+	get_tree().create_timer(5).timeout.connect(func():
+		inverse_blend = false
+	)

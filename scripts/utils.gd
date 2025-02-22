@@ -25,5 +25,5 @@ func get_deltaE(c1: Color, c2: Color):
 	var lab2 = [116 * transform(xyz2[1]) - 16, 500 * (transform(xyz2[0]) - transform(xyz2[1])), 200 * (transform(xyz2[1]) - transform(xyz2[2]))]
 	return sqrt((lab2[0] - lab1[0]) ** 2 + (lab2[1] - lab1[1]) ** 2 + (lab2[2] - lab1[2]) ** 2)
 
-func round_to_dec(num : float, digit : int):
+func round_to_dec(num: float, digit: int):
 	return round(num * pow(10.0, digit)) / pow(10.0, digit)

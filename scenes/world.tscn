@@ -169,7 +169,6 @@ texture = ExtResource("2_fxr3v")
 position = Vector2(-1084, -372)
 scale = Vector2(0.571027, 0.502577)
 script = ExtResource("3_w1s5b")
-speed_range = Vector2(450, 650)
 height = -250.0
 
 [node name="Sprite2D2" type="Sprite2D" parent="Cloud"]
