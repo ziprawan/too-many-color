@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dtawfebilw18g"]
+[gd_scene load_steps=30 format=4 uid="uid://dtawfebilw18g"]
 
 [ext_resource type="Script" path="res://scripts/test.gd" id="1_fiyls"]
 [ext_resource type="Texture2D" uid="uid://bkr0oojv2vbyl" path="res://assets/placeholder/icon.svg" id="2_rb751"]
@@ -9,8 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://dfrgdj5do62sx" path="res://assets/terraria_map_pack_for_swirft/mapArt/BP7/BP7_SoftPlat1.png" id="7_85opr"]
 [ext_resource type="Texture2D" uid="uid://c7xwadmpdby2a" path="res://assets/terraria_map_pack_for_swirft/mapArt/BP7/BP7_SoftPlat2.png" id="8_5aknv"]
 [ext_resource type="Texture2D" uid="uid://htju07b34orj" path="res://assets/terraria_map_pack_for_swirft/mapArt/Backgrounds/BG_BP7.jpg" id="9_jken6"]
-[ext_resource type="Texture2D" uid="uid://bk5prp76u7pp4" path="res://assets/Untitled.png" id="11_rfov0"]
-[ext_resource type="Texture2D" uid="uid://csupw52ccqyxk" path="res://assets/gatau.png" id="12_oo6js"]
 [ext_resource type="Script" path="res://scripts/texture_progress_bar.gd" id="13_uvs2p"]
 
 [sub_resource type="GDScript" id="GDScript_7e3hw"]
@@ -2797,12 +2795,6 @@ sources/3 = SubResource("TileSetAtlasSource_ympbr")
 sources/4 = SubResource("TileSetAtlasSource_4agbw")
 sources/5 = SubResource("TileSetAtlasSource_qspai")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3g6wn"]
-size = Vector2(18, 443)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oj8fk"]
-size = Vector2(29.5, 467.25)
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nnrl2"]
 texture = ExtResource("3_67fyx")
 21:9/0 = 0
@@ -5540,6 +5532,12 @@ sources/3 = SubResource("TileSetAtlasSource_h0xip")
 sources/4 = SubResource("TileSetAtlasSource_08e5b")
 sources/5 = SubResource("TileSetAtlasSource_v46io")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vauku"]
+load_path = "res://.godot/imported/Untitled.png-f999cbd9ad67ebf939413b3a76841057.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fvhs2"]
+load_path = "res://.godot/imported/gatau.png-57a29812420d5448efe1bb378d8d2772.ctex"
+
 [node name="Gameplay" type="Node2D"]
 position = Vector2(-85, 345)
 script = ExtResource("1_fiyls")
@@ -5584,14 +5582,6 @@ tile_set = SubResource("TileSet_k56ik")
 [node name="Collision" type="StaticBody2D" parent="Layer/Container Element Game"]
 position = Vector2(303, 633)
 
-[node name="Tembok1" type="CollisionShape2D" parent="Layer/Container Element Game/Collision"]
-position = Vector2(-313, -263.5)
-shape = SubResource("RectangleShape2D_3g6wn")
-
-[node name="Tembok2" type="CollisionShape2D" parent="Layer/Container Element Game/Collision"]
-position = Vector2(862, -280.375)
-shape = SubResource("RectangleShape2D_oj8fk")
-
 [node name="Scoreboard" type="Node2D" parent="."]
 position = Vector2(80, -106)
 
@@ -5631,6 +5621,6 @@ offset_top = 21.0
 offset_right = 429.0
 offset_bottom = 163.0
 scale = Vector2(0.366844, 0.131813)
-texture_under = ExtResource("11_rfov0")
-texture_progress = ExtResource("12_oo6js")
+texture_under = SubResource("CompressedTexture2D_vauku")
+texture_progress = SubResource("CompressedTexture2D_fvhs2")
 script = ExtResource("13_uvs2p")
