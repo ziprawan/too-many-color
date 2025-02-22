@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkr0oojv2vbyl"
-path="res://.godot/imported/icon.svg-063a0c594accea161dad1024bf23d66b.ctex"
+uid="uid://y4hy3shuylx7"
+path="res://.godot/imported/bp8small.jpg-0b7042cad226519d86e29b985ede523d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholder/icon.svg"
-dest_files=["res://.godot/imported/icon.svg-063a0c594accea161dad1024bf23d66b.ctex"]
+source_file="res://assets/terraria_map_pack_for_swirft/images/thumbnails/bp8small.jpg"
+dest_files=["res://.godot/imported/bp8small.jpg-0b7042cad226519d86e29b985ede523d.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -70,7 +70,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 9
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="GameTitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 5
@@ -79,7 +79,7 @@ text = "Too many color"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="start_button" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -93,7 +93,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_wufrp")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gb4bs")
 text = "Start Game"
 
-[node name="options_button" type="Button" parent="VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -107,7 +107,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_wufrp")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gb4bs")
 text = "Options"
 
-[node name="exit_button" type="Button" parent="VBoxContainer"]
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -122,10 +122,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_gb4bs")
 text = "Exit
 "
 
-[node name="Options_Menu" parent="." instance=ExtResource("3_lmu6m")]
+[node name="OptionsMenu" parent="." instance=ExtResource("3_lmu6m")]
 visible = false
 layout_mode = 1
 
-[connection signal="pressed" from="VBoxContainer/start_button" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/options_button" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="VBoxContainer/exit_button" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_pressed"]
