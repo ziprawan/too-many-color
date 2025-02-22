@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b1tnns8p63rtn"]
+[gd_scene load_steps=20 format=3 uid="uid://b1tnns8p63rtn"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_x7nmm"]
 [ext_resource type="PackedScene" uid="uid://c6uwi7if3vw7l" path="res://scenes/player.tscn" id="2_5t31v"]
@@ -9,9 +9,6 @@
 [ext_resource type="Script" path="res://scripts/targetColor.gd" id="4_0dd84"]
 [ext_resource type="PackedScene" uid="uid://dpmi6gmao34fi" path="res://scenes/gameplayUi.tscn" id="8_8tjxo"]
 [ext_resource type="Texture2D" uid="uid://htju07b34orj" path="res://assets/terraria_map_pack_for_swirft/mapArt/Backgrounds/BG_BP7.jpg" id="8_qfexp"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_onlhw"]
-size = Vector2(174.75, 814)
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_62kpd"]
 parameter_name = "ColorParameter"
@@ -140,6 +137,9 @@ size = Vector2(52, 50)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eli52"]
 size = Vector2(85, 826)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onlhw"]
+size = Vector2(174.75, 814)
+
 [node name="World" type="Node2D"]
 position = Vector2(294, 8.25)
 script = ExtResource("1_x7nmm")
@@ -186,8 +186,8 @@ position = Vector2(110, 275.75)
 
 [node name="Player1" parent="." instance=ExtResource("2_5t31v")]
 position = Vector2(-192, 500)
-starting_position = Vector2(-192, 500)
 collision_layer = 2
+starting_position = Vector2(-192, 500)
 
 [node name="CollisionPlayer1" type="CollisionShape2D" parent="Player1"]
 position = Vector2(-0.25, 1.0625)
@@ -210,5 +210,11 @@ shape = SubResource("RectangleShape2D_inhaw")
 [node name="CollisonTembok1" type="CollisionShape2D" parent="Tembok1"]
 position = Vector2(-896, 405.75)
 shape = SubResource("RectangleShape2D_eli52")
+
+[node name="Tembok2" type="StaticBody2D" parent="."]
+position = Vector2(1158.63, 399.75)
+
+[node name="CollisionTembok2" type="CollisionShape2D" parent="Tembok2"]
+shape = SubResource("RectangleShape2D_onlhw")
 
 [connection signal="timeout" from="Cloud/Timer" to="Cloud" method="_on_timer_timeout"]

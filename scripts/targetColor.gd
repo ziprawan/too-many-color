@@ -1,8 +1,9 @@
 extends Sprite2D
 class_name TargetColor
+
 # This script is not temporary
-var game_manager : GameManager
-var color : Color = Color(1, 1, 1) :
+var game_manager: GameManager
+var color: Color = Color(1, 1, 1):
 	set(value):
 		game_manager.current_target_color = value
 		color = value
