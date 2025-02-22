@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkpxygbfcv58"
-path="res://.godot/imported/a_LevelThumbNailBitmap03.jpg-714d1c15e726e002992b5db3190d6d5d.ctex"
+uid="uid://uejyso4kf2lu"
+path="res://.godot/imported/Untitled.png-15e2015b105801be6ac58b8bc029bdea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://terraria_map_pack_for_swirft/images/thumbnails/a_LevelThumbNailBitmap03.jpg"
-dest_files=["res://.godot/imported/a_LevelThumbNailBitmap03.jpg-714d1c15e726e002992b5db3190d6d5d.ctex"]
+source_file="res://terraria_map_pack_for_swirft/mapArt/Untitled.png"
+dest_files=["res://.godot/imported/Untitled.png-15e2015b105801be6ac58b8bc029bdea.ctex"]
 
 [params]
 
