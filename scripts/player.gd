@@ -3,23 +3,23 @@ class_name Player
 
 @onready var sprite: Sprite2D = $Sprite
 
-@export var starting_position : Vector2
 @export var speed = 700.0
 @export var color := Color(1, 1, 1)
 @export var player_id: int
 
-var direction : Vector2
-var score : float :
+var starting_position: Vector2
+var direction: Vector2
+var score: float:
 	# Updates the value in game_manager as well
 	set(value):
 		game_manager.player_scores[player_id] = value
 		score = value
-var set_score : float :
+var set_score: float:
 	set(value):
 		game_manager.player_set_scores[player_id] = value
 		set_score = value
 
-var game_manager : GameManager
+var game_manager: GameManager
 
 func _ready() -> void:
 	game_manager = get_tree().current_scene
@@ -28,6 +28,8 @@ func _ready() -> void:
 	game_manager.set_start.connect(on_set_start)
 	game_manager.set_end.connect(on_set_end)
 	sprite.material = sprite.material.duplicate()
+	print("player_id and its global position: ", player_id, " ", global_position)
+	starting_position = global_position
 
 func _process(_delta):
 	# Movement Handling
@@ -42,7 +44,7 @@ func _process(_delta):
 	sprite.material.set_shader_parameter("ColorParameter", color)
 
 func on_round_start(round_number):
-	print("round ", round_number," start!")
+	print("round ", round_number, " start!")
 	pass
 
 func on_round_end():

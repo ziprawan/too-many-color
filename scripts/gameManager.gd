@@ -2,16 +2,16 @@ extends Node
 class_name GameManager
 
 # Round / Set Shenanigans
-@export var round_duration : float = 5.0
-var round_timer : float
-var round_is_active : bool = true
+@export var round_duration: float = 5.0
+var round_timer: float
+var round_is_active: bool = true
 var round_per_set := 4
 var set_per_game = 7
 var current_round = 0
 var current_set = 0
-signal round_start(round_number : int)
+signal round_start(round_number: int)
 signal round_end
-signal set_start(set_number : int)
+signal set_start(set_number: int)
 signal set_end
 signal game_over
 
@@ -24,7 +24,6 @@ var player_dE = [0.0, 0.0]
 
 func _ready() -> void:
 	start_next_round()
-	print(OS.is_debug_build())
 
 func start_next_round():
 	current_round += 1
@@ -52,7 +51,7 @@ func start_new_set():
 		set_start.emit(current_set)
 		start_next_round()
 	else:
-		game_over.emit() #nnti bisa ditambahin game over logic, for now it doesnt do anything
+		game_over.emit() # nnti bisa ditambahin game over logic, for now it doesnt do anything
 
 func _process(delta: float) -> void:
 	if round_timer - delta >= 0:

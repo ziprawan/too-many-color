@@ -187,7 +187,6 @@ position = Vector2(110, 275.75)
 [node name="Player1" parent="." instance=ExtResource("2_5t31v")]
 position = Vector2(-192, 500)
 collision_layer = 2
-starting_position = Vector2(-192, 500)
 
 [node name="CollisionPlayer1" type="CollisionShape2D" parent="Player1"]
 position = Vector2(-0.25, 1.0625)
@@ -196,7 +195,6 @@ shape = SubResource("RectangleShape2D_gnbq4")
 [node name="Player2" parent="." instance=ExtResource("2_5t31v")]
 position = Vector2(402, 500)
 collision_layer = 2
-starting_position = Vector2(402, 500)
 player_id = 1
 
 [node name="CollisionPlayer2" type="CollisionShape2D" parent="Player2"]
