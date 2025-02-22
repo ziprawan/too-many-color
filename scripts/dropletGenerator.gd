@@ -15,7 +15,6 @@ func rain():
 
 	for i in range(count):
 		var last_coords = coords
-
 		if last_coords == coords:
 			coords = last_coords + randf_range(100, 300)
 			
