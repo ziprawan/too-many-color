@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://b1tnns8p63rtn"]
+[gd_scene load_steps=15 format=3 uid="uid://b1tnns8p63rtn"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_x7nmm"]
 [ext_resource type="PackedScene" uid="uid://c6uwi7if3vw7l" path="res://scenes/player.tscn" id="2_5t31v"]
-[ext_resource type="Texture2D" uid="uid://b2b7n46mmflnc" path="res://assets/placeholder/icon.svg" id="2_fxr3v"]
+[ext_resource type="Texture2D" uid="uid://bkr0oojv2vbyl" path="res://assets/placeholder/icon.svg" id="2_fxr3v"]
 [ext_resource type="Texture2D" uid="uid://cko7gpaj105fy" path="res://assets/placeholder/base_circle_fill-export.png" id="2_ycvdk"]
 [ext_resource type="Texture2D" uid="uid://dphtkb2phhpry" path="res://assets/placeholder/clouds.png" id="3_enf2l"]
 [ext_resource type="Script" path="res://scripts/dropletGenerator.gd" id="3_w1s5b"]
-[ext_resource type="Script" path="res://scripts/tempScoreDisplay.gd" id="7_1yhgt"]
+[ext_resource type="PackedScene" uid="uid://dpmi6gmao34fi" path="res://scenes/gameplayUi.tscn" id="8_8tjxo"]
+[ext_resource type="Texture2D" uid="uid://htju07b34orj" path="res://assets/terraria_map_pack_for_swirft/mapArt/Backgrounds/BG_BP7.jpg" id="8_qfexp"]
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_62kpd"]
 parameter_name = "ColorParameter"
@@ -131,6 +132,13 @@ position = Vector2(294, 8.25)
 script = ExtResource("1_x7nmm")
 target_color_indicator = NodePath("Target Color")
 
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -3
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(110, 274.75)
+texture = ExtResource("8_qfexp")
+
 [node name="Target Color" type="Sprite2D" parent="."]
 z_index = 4
 material = SubResource("ShaderMaterial_77wvn")
@@ -139,6 +147,7 @@ texture = ExtResource("2_ycvdk")
 
 [node name="Arena" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 position = Vector2(115.75, 322.75)
 scale = Vector2(6.97266, 4.79688)
 texture = ExtResource("2_fxr3v")
@@ -151,6 +160,7 @@ speed_range = Vector2(450, 650)
 height = -50.0
 
 [node name="Sprite2D2" type="Sprite2D" parent="Cloud"]
+visible = false
 position = Vector2(2103.23, 753.616)
 texture = ExtResource("3_enf2l")
 
@@ -161,38 +171,15 @@ autostart = true
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(110, 275.75)
 
-[node name="P1" parent="." instance=ExtResource("2_5t31v")]
+[node name="Player1" parent="." instance=ExtResource("2_5t31v")]
 position = Vector2(-192, 500)
-player_id = 1
 
-[node name="P2" parent="." instance=ExtResource("2_5t31v")]
+[node name="Player2" parent="." instance=ExtResource("2_5t31v")]
 position = Vector2(402, 500)
 collision_layer = 2
 collision_mask = 2
+player_id = 1
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="temp_scores" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("p1", "p2", "p1_score_label", "p2_score_label")]
-offset_left = 7.0
-offset_top = 500.0
-offset_right = 333.0
-offset_bottom = 642.0
-script = ExtResource("7_1yhgt")
-p1 = NodePath("../../P1")
-p2 = NodePath("../../P2")
-p1_score_label = NodePath("P1_score")
-p2_score_label = NodePath("P2_score")
-
-[node name="P1_score" type="RichTextLabel" parent="UI/temp_scores"]
-custom_minimum_size = Vector2(0, 69)
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 24
-text = "P1: "
-
-[node name="P2_score" type="RichTextLabel" parent="UI/temp_scores"]
-custom_minimum_size = Vector2(0, 69)
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 24
-text = "P2: "
+[node name="UI" parent="." instance=ExtResource("8_8tjxo")]
 
 [connection signal="timeout" from="Cloud/Timer" to="Cloud" method="_on_timer_timeout"]
