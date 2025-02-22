@@ -1,16 +1,16 @@
 [gd_scene load_steps=21 format=4 uid="uid://dpmi6gmao34fi"]
 
+[ext_resource type="Script" path="res://scripts/scoreboard.gd" id="1_3x7dg"]
 [ext_resource type="Texture2D" uid="uid://sgqlisbyoihc" path="res://assets/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat1.png" id="1_e1wqc"]
 [ext_resource type="Texture2D" uid="uid://dujuepc1bgyp8" path="res://assets/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat2.png" id="2_4p7u2"]
 [ext_resource type="Texture2D" uid="uid://b8myfbxr2j57j" path="res://assets/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat3.png" id="3_q3n8y"]
 [ext_resource type="Texture2D" uid="uid://dimlvroo3xhqt" path="res://assets/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat4.png" id="4_wba8x"]
 [ext_resource type="Texture2D" uid="uid://dfrgdj5do62sx" path="res://assets/terraria_map_pack_for_swirft/mapArt/BP7/BP7_SoftPlat1.png" id="5_jqwn5"]
 [ext_resource type="Texture2D" uid="uid://c7xwadmpdby2a" path="res://assets/terraria_map_pack_for_swirft/mapArt/BP7/BP7_SoftPlat2.png" id="6_jgx5v"]
-[ext_resource type="Script" path="res://scripts/temp/tempScoreDisplay.gd" id="7_k4i8w"]
 [ext_resource type="Texture2D" uid="uid://2vdfxrnqiryl" path="res://assets/over.svg" id="8_hhggh"]
-[ext_resource type="Script" path="res://scripts/textureProgressBar.gd" id="9_52mdf"]
 [ext_resource type="Texture2D" uid="uid://dfhomyyu4f3fp" path="res://assets/progress.svg" id="9_yy86q"]
 [ext_resource type="Script" path="res://scripts/temp/tempTimer.gd" id="10_0otv7"]
+[ext_resource type="Script" path="res://scripts/tempScoreDisplay.gd" id="11_gp7xg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx4wm"]
 texture = ExtResource("1_e1wqc")
@@ -2759,6 +2759,7 @@ load_path = "res://.godot/imported/gatau.png-57a29812420d5448efe1bb378d8d2772.ct
 
 [node name="Scoreboard" type="Node2D" parent="."]
 position = Vector2(960, 30)
+script = ExtResource("1_3x7dg")
 
 [node name="TileBackground" type="TileMapLayer" parent="Scoreboard"]
 use_parent_material = true
@@ -2777,7 +2778,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Player 1 :"
 
-[node name="ScoreLabel1" type="Label" parent="Scoreboard/PlayerLabel1"]
+[node name="ScoreLabel" type="Label" parent="Scoreboard/PlayerLabel1"]
 layout_mode = 0
 offset_left = 76.0
 offset_right = 158.0
@@ -2796,7 +2797,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Player 2 :"
 
-[node name="ScoreLabel1" type="Label" parent="Scoreboard/PlayerLabel2"]
+[node name="ScoreLabel" type="Label" parent="Scoreboard/PlayerLabel2"]
 layout_mode = 0
 offset_left = 76.0
 offset_right = 158.0
@@ -2812,7 +2813,6 @@ offset_bottom = 138.0
 scale = Vector2(0.366844, 0.131813)
 texture_under = SubResource("CompressedTexture2D_vauku")
 texture_progress = SubResource("CompressedTexture2D_fvhs2")
-script = ExtResource("9_52mdf")
 
 [node name="ScoreBar2" type="TextureProgressBar" parent="Scoreboard"]
 z_index = 3
@@ -2823,8 +2823,6 @@ offset_bottom = 139.0
 scale = Vector2(0.366844, 0.131813)
 texture_under = SubResource("CompressedTexture2D_vauku")
 texture_progress = SubResource("CompressedTexture2D_fvhs2")
-script = ExtResource("9_52mdf")
-player_id = 1
 
 [node name="PlayerSet1" type="TextureProgressBar" parent="Scoreboard"]
 offset_left = -148.0
@@ -2859,7 +2857,7 @@ offset_left = 7.0
 offset_top = 749.0
 offset_right = 778.0
 offset_bottom = 1074.0
-script = ExtResource("7_k4i8w")
+script = ExtResource("11_gp7xg")
 p1_score_label = NodePath("P1_score")
 p2_score_label = NodePath("P2_score")
 p1_set_score = NodePath("P1_Set_score")
