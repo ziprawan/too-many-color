@@ -13,7 +13,7 @@ func _ready() -> void:
 	game_manager.round_start.connect(on_round_start)
 	material.set_shader_parameter("ColorParameter", game_manager.current_target_color)
 
-func on_round_start(round_number):
+func on_round_start(_round_number):
 	randomise_color()
 
 func randomise_color():

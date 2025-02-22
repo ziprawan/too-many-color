@@ -105,6 +105,8 @@ func _on_collection_area_entered(area: Area2D) -> void:
 		# Debug purpose
 		Globals.player_colors[(1 - player_id) if inverse_score else player_id] = color
 
+		droplet_collected.emit()
+
 		# Free the object
 		droplet.queue_free()
 
