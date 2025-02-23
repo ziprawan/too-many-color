@@ -16,7 +16,6 @@ signal toggle_inverse_blend
 # Colors that P1 catches go to P2 and vice versa
 signal uno_reverse
 
-
 # Emitted when a new round starts
 signal round_start(round_number: int)
 # Emitted when a round ends
@@ -29,3 +28,7 @@ signal set_end
 signal game_over
 # Buat countdown
 signal countdown_over
+
+# Emit to change a background group's color
+signal change_background_color(group : int, color : Color)
+

@@ -1,0 +1,75 @@
+[gd_scene load_steps=16 format=3 uid="uid://counwxdujdcu8"]
+
+[ext_resource type="Script" path="res://scripts/backgroundManager.gd" id="1_cvisj"]
+[ext_resource type="Texture2D" uid="uid://dljj7bkvvq4qn" path="res://assets/background/game_background/game background.png" id="1_dh58f"]
+[ext_resource type="Texture2D" uid="uid://cewnxfy0airuh" path="res://assets/background/game_background/1_plain background.png" id="2_7tin5"]
+[ext_resource type="Material" uid="uid://d1w0mfq40x8cq" path="res://assets/materials/recolor_material.tres" id="3_jghv3"]
+[ext_resource type="Texture2D" uid="uid://gbrba1u3bdy8" path="res://assets/background/game_background/2_back tree.png" id="4_hgckg"]
+[ext_resource type="Texture2D" uid="uid://dj88iwmu870ax" path="res://assets/background/game_background/8_detail_.png" id="5_ny6qh"]
+[ext_resource type="Texture2D" uid="uid://0we5w77g7yf5" path="res://assets/background/game_background/3_middle tree.png" id="7_tuh67"]
+[ext_resource type="Texture2D" uid="uid://dx154lnw41h5s" path="res://assets/background/game_background/4_front tree.png" id="8_1k1ry"]
+[ext_resource type="Texture2D" uid="uid://da0fsdgsdbgdk" path="res://assets/background/game_background/5_ground.png" id="9_6uc0k"]
+[ext_resource type="Texture2D" uid="uid://cu0mcpwf23e3i" path="res://assets/background/game_background/6_bushes.png" id="10_buw05"]
+[ext_resource type="Texture2D" uid="uid://c0vnt3k00ax0g" path="res://assets/background/game_background/9_light.png" id="11_xuqyj"]
+[ext_resource type="Texture2D" uid="uid://dvq6rmlqvmnjc" path="res://assets/background/game_background/11_light streaks 1.png" id="12_fn1yo"]
+[ext_resource type="Texture2D" uid="uid://w73a54sm8w0d" path="res://assets/background/game_background/10_light streaks 2.png" id="13_vlf1h"]
+[ext_resource type="Texture2D" uid="uid://b4ase7f6lf6bb" path="res://assets/background/game_background/12_blue overlay.png" id="14_rtiij"]
+[ext_resource type="Texture2D" uid="uid://r1rqf5pxhvg0" path="res://assets/background/game_background/13_filter overlay.png" id="15_4p35p"]
+
+[node name="Background" type="Node2D" node_paths=PackedStringArray("sprite_groups")]
+z_index = -3
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(110, 274.75)
+scale = Vector2(1.20444, 1.20444)
+script = ExtResource("1_cvisj")
+recolor_material = ExtResource("3_jghv3")
+sprite_groups = [NodePath("Layers/Back Trees"), NodePath("Layers/Middle Trees"), NodePath("Layers/Front Trees"), NodePath("Layers/Ground")]
+
+[node name="full bg" type="Sprite2D" parent="."]
+texture = ExtResource("1_dh58f")
+
+[node name="Layers" type="Node2D" parent="."]
+
+[node name="sky" type="Sprite2D" parent="Layers"]
+texture = ExtResource("2_7tin5")
+
+[node name="Back Trees" type="Sprite2D" parent="Layers"]
+texture = ExtResource("4_hgckg")
+
+[node name="Details" type="Sprite2D" parent="Layers/Back Trees"]
+use_parent_material = true
+texture = ExtResource("5_ny6qh")
+
+[node name="Middle Trees" type="Sprite2D" parent="Layers"]
+texture = ExtResource("7_tuh67")
+
+[node name="Front Trees" type="Sprite2D" parent="Layers"]
+texture = ExtResource("8_1k1ry")
+
+[node name="Ground" type="Sprite2D" parent="Layers"]
+texture = ExtResource("9_6uc0k")
+
+[node name="Bush" type="Sprite2D" parent="Layers/Ground"]
+use_parent_material = true
+texture = ExtResource("10_buw05")
+
+[node name="Light" type="Sprite2D" parent="Layers"]
+z_index = 10
+texture = ExtResource("11_xuqyj")
+
+[node name="Light Streaks" type="Sprite2D" parent="Layers/Light"]
+texture = ExtResource("12_fn1yo")
+
+[node name="Light Streaks2" type="Sprite2D" parent="Layers/Light"]
+texture = ExtResource("13_vlf1h")
+
+[node name="Blue Overlay" type="Sprite2D" parent="Layers"]
+visible = false
+modulate = Color(1, 1, 1, 0.584314)
+z_index = 10
+texture = ExtResource("14_rtiij")
+
+[node name="Halftone" type="Sprite2D" parent="Layers"]
+visible = false
+texture = ExtResource("15_4p35p")

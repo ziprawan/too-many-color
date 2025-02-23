@@ -6,11 +6,14 @@ signal droplet_collected
 @onready var animated_sprite: AnimatedSprite2D = $CharacterSprite
 @onready var bucket: Sprite2D = $Bucket
 @onready var bucket_2: Sprite2D = $Bucket2
+@onready var water_sprite: Sprite2D = $Water
 
 @export var speed = 500.0
-@export var color := Color(1, 1, 1)
+@export var color := Color(1, 1, 1) :
+	set(value):
+		game_manager.player_colors[player_id] = value
+		color = value
 @export var player_id: int
-@export var water_sprite: Sprite2D
 
 var starting_position: Vector2
 var direction: Vector2
@@ -73,6 +76,8 @@ func _process(_delta):
 
 	# Color Handling
 	water_sprite.material.set_shader_parameter("ColorParameter", color)
+	print(water_sprite.material.get_shader_parameter("ColorParameter"))
+	#bucket.material.set_shader_parameter("ColorParameter", color)
 
 func on_round_start(round_number):
 	if game_manager.player_set_tally[player_id] > 0 :
@@ -82,15 +87,15 @@ func on_round_start(round_number):
 	else:
 		bucket.visible = true
 		bucket_2.visible = false
-		
-		
+
+	color = Color(1, 1, 1)
 	print("round ", round_number, " start!")
 	pass
 
 func on_round_end():
 	print("round end!")
 	set_score += score
-	color = Color(1, 1, 1)
+	score = 0
 	global_position = starting_position
 	pass
 
@@ -137,6 +142,9 @@ func _on_collection_area_entered(area: Area2D) -> void:
 
 func change_move_speed(ratio : float):
 	speed *= ratio
+
+func unfreeze_player_movement():
+	pass
 
 func toggle_inverse_blend():
 	inverse_blend = not inverse_blend

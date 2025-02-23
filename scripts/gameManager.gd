@@ -3,9 +3,10 @@ class_name GameManager
 
 # Round / Set Shenanigans
 @export var round_duration: float = 60
+
 var round_timer: float
 var round_is_active: bool = true
-var round_per_set := 4
+var round_per_set := 1
 var set_per_game = 7
 var current_round = 0
 var current_set = 0
@@ -18,6 +19,7 @@ var time_start:bool = false
 
 # Game Variables
 var current_target_color: Color
+var player_colors : Array[Color] = [Color(0, 0, 0), Color(0, 0, 0)]
 @export var player_scores := [0.0, 0.0]
 @export var player_set_scores := [0.0, 0.0]
 @export var player_set_tally = [0, 0]
@@ -47,6 +49,12 @@ func start_new_set():
 	# Determines who gets the point
 	if player_set_scores[0] > player_set_scores[1]: player_set_tally[0] += 1
 	else: player_set_tally[1] += 1
+	
+	# Background color logic
+	if player_set_tally[0] != player_set_tally[1]:
+		var winner_id = player_set_tally.find(max(player_set_tally[0], player_set_tally[1]))
+		EventBus.change_background_color.emit(max(player_set_tally[0], player_set_tally[1]), player_colors[winner_id])
+	
 	# Start new set
 	current_round = 0
 	current_set += 1

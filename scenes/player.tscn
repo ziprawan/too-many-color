@@ -181,9 +181,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r87kf"]
 size = Vector2(52, 26)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("water_sprite") groups=["Player"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1awj"]
+size = Vector2(50.5, 51.375)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+scale = Vector2(1.67, 1.67)
 script = ExtResource("1_iajo7")
-water_sprite = NodePath("Water")
+speed = 950.0
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(2.98023e-08, 15)
@@ -211,11 +215,14 @@ scale = Vector2(0.0859375, 0.0859375)
 texture = ExtResource("26_hbloh")
 
 [node name="Collection" type="Area2D" parent="."]
-visible = false
 position = Vector2(0, -7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collection"]
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_r87kf")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(3, 43)
+shape = SubResource("RectangleShape2D_t1awj")
 
 [connection signal="area_entered" from="Collection" to="." method="_on_collection_area_entered"]
