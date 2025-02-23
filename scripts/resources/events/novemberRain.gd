@@ -1,7 +1,7 @@
 extends Event
 class_name NovemberRain
 
-@export_range(1, 9) var ratio : float
+@export_range(1, 9) var ratio : float = 5
 
 func on_triggered():
 	#print(self, " triggered")
