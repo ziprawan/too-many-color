@@ -1,7 +1,7 @@
 extends Event
 class_name MadeInHeaven
 
-@export_range(1.1, 3) var ratio : float = 2
+@export_range(1.1, 3) var ratio : float = 5
 
 func on_triggered():
 	#print(self, " triggered")

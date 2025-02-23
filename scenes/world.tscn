@@ -156,20 +156,25 @@ script = ExtResource("2_n21n5")
 [node name="NovemberRain" type="Node" parent="EventManager"]
 script = ExtResource("3_bfh5j")
 ratio = 9.0
+cooldown_duration = 6.0
 
 [node name="MadeInHeaven" type="Node" parent="EventManager"]
 script = ExtResource("4_8sy1i")
+cooldown_duration = 6.0
 
 [node name="MadeInHell" type="Node" parent="EventManager"]
 script = ExtResource("5_lctjc")
 ratio = 2.0
+cooldown_duration = 6.0
 
 [node name="BohemianRhapsody" type="Node" parent="EventManager"]
 script = ExtResource("6_86l57")
+cooldown_duration = 6.0
 
 [node name="Drought" type="Node" parent="EventManager"]
 script = ExtResource("7_1nary")
 reduce_by = 3.0
+cooldown_duration = 6.0
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -3

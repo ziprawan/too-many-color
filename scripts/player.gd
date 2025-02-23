@@ -3,9 +3,11 @@ class_name Player
 
 signal droplet_collected
 
-#@onready var sprite: Sprite2D = $Sprite
+@onready var animated_sprite: AnimatedSprite2D = $CharacterSprite
+@onready var bucket: Sprite2D = $Bucket
+@onready var bucket_2: Sprite2D = $Bucket2
 
-@export var speed = 700.0
+@export var speed = 500.0
 @export var color := Color(1, 1, 1)
 @export var player_id: int
 @export var water_sprite: Sprite2D
@@ -25,12 +27,16 @@ var set_score: float:
 		set_score = value
 
 var game_manager: GameManager
+var phase:int = 1
 
 func _ready() -> void:
 	game_manager = get_tree().current_scene
+
 	# player_id validation
 	if player_id > 1 or player_id < 0:
 		push_error("player_id value can only be 0 or 1")
+	
+	
 	# EventBus set/round shenanigans
 	EventBus.round_start.connect(on_round_start)
 	EventBus.round_end.connect(on_round_end)
@@ -48,14 +54,29 @@ func _process(_delta):
 	direction.x = Input.get_axis("left%s" % [player_id], "right%s" % [player_id])
 	if direction:
 		velocity = direction * speed
+		animated_sprite.play("walk_phase_%d_%d"% [phase, player_id])
+		if direction.x < 0:
+			animated_sprite.flip_h = true
+		elif direction.x > 0:
+			animated_sprite.flip_h = false
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
+		animated_sprite.play("idle_phase_%d_%d"% [phase, player_id])
 	move_and_slide()
 
 	# Color Handling
 	water_sprite.material.set_shader_parameter("ColorParameter", color)
 
 func on_round_start(round_number):
+	if game_manager.player_set_tally[player_id] > 0 :
+		phase = 2
+		bucket_2.visible = true
+		bucket.visible = false
+	else:
+		bucket.visible = true
+		bucket_2.visible = false
+		
+		
 	print("round ", round_number, " start!")
 	pass
 
