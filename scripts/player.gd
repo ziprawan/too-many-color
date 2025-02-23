@@ -25,7 +25,7 @@ var set_score: float:
 		set_score = value
 
 var game_manager: GameManager
-
+var can_move: bool = false
 func _ready() -> void:
 	game_manager = get_tree().current_scene
 	# player_id validation
@@ -40,6 +40,9 @@ func _ready() -> void:
 	EventBus.change_player_move_speed.connect(change_move_speed)
 	EventBus.toggle_inverse_blend.connect(toggle_inverse_blend)
 	
+	#Countdown already over?
+	EventBus.connect("countdown_over", func(): can_move = true)
+
 	water_sprite.material = water_sprite.material.duplicate()
 	starting_position = global_position
 
@@ -50,7 +53,8 @@ func _process(_delta):
 		velocity = direction * speed
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
-	move_and_slide()
+	if can_move:
+		move_and_slide()
 
 	# Color Handling
 	water_sprite.material.set_shader_parameter("ColorParameter", color)

@@ -17,12 +17,13 @@ class_name DropletGenerator
 @export_category("Dependencies")
 @export var event_manager : EventManager
 @export var rain_timer : Timer
-
+var can_generate: bool = false
 
 func _ready():
 	rain_timer.wait_time = droplet_delay
 	EventBus.connect("change_droplet_rate", change_droplet_rate)
 	EventBus.connect("reduce_droplet_count", reduce_droplet_count)
+	EventBus.connect("countdown_over", func(): can_generate = true)
 	#if event_manager:
 		#event_manager.drought_limit.connect(_on_drought_limit)
 		#event_manager.dat_boi.connect(_on_el_nino)
@@ -40,10 +41,11 @@ func rain():
 			coords = last_coords + randf_range(100, 300)
 			
 		# Droplet Instantiation
-		var instance: Droplet = projectile.instantiate()
-		instance.spawn_position = Vector2(coords, height)
-		instance.speed = randi_range(speed_range.x, speed_range.y)
-		main.add_child.call_deferred(instance)
+		if can_generate:
+			var instance: Droplet = projectile.instantiate()
+			instance.spawn_position = Vector2(coords, height)
+			instance.speed = randi_range(speed_range.x, speed_range.y)
+			main.add_child.call_deferred(instance)
 
 func change_droplet_rate(ratio : float):
 	droplet_delay *= 1/ratio

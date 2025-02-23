@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dpmi6gmao34fi"]
+[gd_scene load_steps=23 format=4 uid="uid://dpmi6gmao34fi"]
 
 [ext_resource type="Script" path="res://scripts/scoreboard.gd" id="1_3x7dg"]
 [ext_resource type="Texture2D" uid="uid://sgqlisbyoihc" path="res://assets/placeholder/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat1.png" id="1_e1wqc"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://dfhomyyu4f3fp" path="res://assets/placeholder/progress.svg" id="9_yy86q"]
 [ext_resource type="Script" path="res://scripts/temp/tempTimer.gd" id="10_0otv7"]
 [ext_resource type="Script" path="res://scripts/tempScoreDisplay.gd" id="11_gp7xg"]
+[ext_resource type="Script" path="res://scenes/timer.gd" id="12_3mk3j"]
+[ext_resource type="FontFile" uid="uid://c417s7s2syvkk" path="res://Fonts/Sigmar-Regular.ttf" id="13_mxfij"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx4wm"]
 texture = ExtResource("1_e1wqc")
@@ -2770,19 +2772,21 @@ tile_set = SubResource("TileSet_us81o")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -149.0
-offset_top = -7.0
-offset_right = -78.0
-offset_bottom = 16.0
+offset_left = -150.0
+offset_top = -9.0
+offset_right = -70.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("13_mxfij")
 text = "Player 1 :"
 
 [node name="ScoreLabel" type="Label" parent="Scoreboard/PlayerLabel1"]
 layout_mode = 0
-offset_left = 76.0
-offset_right = 158.0
-offset_bottom = 23.0
+offset_left = 92.0
+offset_right = 174.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("13_mxfij")
 text = "0"
 
 [node name="PlayerLabel2" type="Label" parent="Scoreboard"]
@@ -2795,13 +2799,15 @@ offset_right = 78.0
 offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("13_mxfij")
 text = "Player 2 :"
 
 [node name="ScoreLabel" type="Label" parent="Scoreboard/PlayerLabel2"]
 layout_mode = 0
-offset_left = 76.0
-offset_right = 158.0
-offset_bottom = 23.0
+offset_left = 89.0
+offset_right = 171.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("13_mxfij")
 text = "0"
 
 [node name="ScoreBar1" type="TextureProgressBar" parent="Scoreboard"]
@@ -2844,9 +2850,10 @@ texture_progress = ExtResource("9_yy86q")
 
 [node name="temp_timer" type="RichTextLabel" parent="Scoreboard"]
 offset_left = -98.0
-offset_top = 33.0
+offset_top = 31.0
 offset_right = 103.0
-offset_bottom = 73.0
+offset_bottom = 71.0
+theme_override_fonts/normal_font = ExtResource("13_mxfij")
 theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "[center]35.00"
@@ -2907,3 +2914,20 @@ custom_minimum_size = Vector2(0, 43.185)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 24
 text = "Color2: "
+
+[node name="Timer" type="Node2D" parent="."]
+script = ExtResource("12_3mk3j")
+
+[node name="TimerCountdown" type="Timer" parent="Timer"]
+
+[node name="TeksCountdown" type="Label" parent="Timer"]
+offset_left = 842.0
+offset_top = 117.0
+offset_right = 1059.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("13_mxfij")
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

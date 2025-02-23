@@ -27,3 +27,5 @@ signal set_start(set_number: int)
 signal set_end
 # Emitted when current game ends
 signal game_over
+# Buat countdown
+signal countdown_over

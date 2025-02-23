@@ -2,13 +2,14 @@ extends Node
 class_name GameManager
 
 # Round / Set Shenanigans
-@export var round_duration: float = 25
+@export var round_duration: float = 60
 var round_timer: float
 var round_is_active: bool = true
 var round_per_set := 4
 var set_per_game = 7
 var current_round = 0
 var current_set = 0
+var time_start:bool = false
 #signal round_start(round_number: int)
 #signal round_end
 #signal set_start(set_number: int)
@@ -23,11 +24,14 @@ var current_target_color: Color
 var player_dE = [0.0, 0.0]
 
 func _ready() -> void:
+	EventBus.connect("countdown_over", func(): time_start = true)
 	start_next_round()
 
 func start_next_round():
 	current_round += 1
-	if current_round > round_per_set: start_new_set()
+	if current_round > round_per_set:
+
+		start_new_set()
 	else:
 		round_is_active = true
 		round_timer = round_duration
@@ -54,7 +58,8 @@ func start_new_set():
 
 func _process(delta: float) -> void:
 	if round_timer - delta >= 0:
-		round_timer -= delta
+		if time_start:
+			round_timer -= delta
 	elif round_is_active:
 		round_timer = 0
 		end_round()
