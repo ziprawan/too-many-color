@@ -19,7 +19,7 @@ Tujuan pengembangan proyek ini adalah untuk submisi GIMJAM ITB 2025 yang mengiku
 ## Memasang dan Menjalankan Prototype
 
 Menjalankan langsung:
-1. Pergi ke halaman (_release_)[https://github.com/ziprawan/too-many-color/releases]
+1. Pergi ke halaman [_release_](https://github.com/ziprawan/too-many-color/releases)
 2. Unduh sesuai dengan platform yang Anda gunakan.
 3. Jalankan permainan dengan mengklik dua kali pada aplikasi.
 
