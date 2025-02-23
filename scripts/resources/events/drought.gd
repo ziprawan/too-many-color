@@ -9,4 +9,4 @@ func on_triggered():
 
 func on_end():
 	#print(self, " ended")
-	EventBus.emit_signal("change_droplet_count", -reduce_by)
+	EventBus.emit_signal("reduce_droplet_count", -reduce_by)
