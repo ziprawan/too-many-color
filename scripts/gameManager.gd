@@ -6,8 +6,8 @@ class_name GameManager
 
 var round_timer: float
 var round_is_active: bool = true
-var round_per_set := 1
-var set_per_game = 7
+var round_per_set := 3
+var set_per_game = 4
 var current_round = 0
 var current_set = 0
 var time_start:bool = false
@@ -32,7 +32,6 @@ func _ready() -> void:
 func start_next_round():
 	current_round += 1
 	if current_round > round_per_set:
-
 		start_new_set()
 	else:
 		round_is_active = true
@@ -62,7 +61,7 @@ func start_new_set():
 		EventBus.set_start.emit(current_set)
 		start_next_round()
 	else:
-		EventBus.game_over.emit() # nnti bisa ditambahin game over logic, for now it doesnt do anything
+		EventBus.set_end.emit() # nnti bisa ditambahin game over logic, for now it doesnt do anything
 
 func _process(delta: float) -> void:
 	if round_timer - delta >= 0:

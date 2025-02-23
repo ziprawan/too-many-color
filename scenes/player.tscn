@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://c6uwi7if3vw7l"]
+[gd_scene load_steps=83 format=3 uid="uid://c6uwi7if3vw7l"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_iajo7"]
 [ext_resource type="Material" uid="uid://d1w0mfq40x8cq" path="res://assets/materials/recolor_material.tres" id="2_0c2mb"]
@@ -26,14 +26,27 @@
 [ext_resource type="Texture2D" uid="uid://c5m4h830anv3w" path="res://assets/player/Phase 4 (player 2) kanan/1.png" id="14_xt5hp"]
 [ext_resource type="Texture2D" uid="uid://1sexrrm0angb" path="res://assets/player/Phase 2 (player 1) kanan/3.png" id="15_3ffpr"]
 [ext_resource type="Texture2D" uid="uid://ddalufva5a64v" path="res://assets/player/Phase 4 (player 2) kanan/6.png" id="15_m4bjp"]
+[ext_resource type="Texture2D" uid="uid://bnmj11wc41r04" path="res://assets/player/Losing animation/1.png" id="16_7758h"]
 [ext_resource type="Texture2D" uid="uid://chgf05hv7tle7" path="res://assets/player/Phase 2 (player 1) kanan/4.png" id="16_ybrno"]
+[ext_resource type="Texture2D" uid="uid://bp4ux0rmab12g" path="res://assets/player/Losing animation/6.png" id="17_2ficv"]
 [ext_resource type="Texture2D" uid="uid://b33tdfpwqip2m" path="res://assets/player/Phase 2 (player 1) kanan/5.png" id="17_uehfe"]
 [ext_resource type="Texture2D" uid="uid://vyyaqw2o2mlj" path="res://assets/player/Phase 2 (player 2) kanan/1.png" id="18_30ua5"]
+[ext_resource type="Texture2D" uid="uid://cl64x7c7wqg50" path="res://assets/player/Losing animation/7.png" id="18_fv6fu"]
 [ext_resource type="Texture2D" uid="uid://bcw35enkc1ong" path="res://assets/player/Phase 2 (player 2) kanan/2.png" id="19_66x1r"]
+[ext_resource type="Texture2D" uid="uid://bwgcars60tpho" path="res://assets/player/Losing animation/8.png" id="19_winot"]
 [ext_resource type="Texture2D" uid="uid://0k8p0634k7ud" path="res://assets/player/Phase 2 (player 2) kanan/5.png" id="20_08v6p"]
+[ext_resource type="Texture2D" uid="uid://csxfiltyd25d5" path="res://assets/player/Losing animation/9.png" id="20_mai4h"]
+[ext_resource type="Texture2D" uid="uid://emam8h23rv06" path="res://assets/player/Losing animation/10.png" id="21_cywla"]
 [ext_resource type="Texture2D" uid="uid://bop82nkjknd0b" path="res://assets/player/Phase 2 (player 2) kanan/6.png" id="21_kraqb"]
 [ext_resource type="Texture2D" uid="uid://due0uh2l1oo2i" path="res://assets/player/Phase 2 (player 2) kanan/7.png" id="22_dgqa5"]
+[ext_resource type="Texture2D" uid="uid://dd8c1534tpimv" path="res://assets/player/Losing animation/11.png" id="22_udqir"]
+[ext_resource type="Texture2D" uid="uid://c8gldy7rus1kv" path="res://assets/player/Losing animation/12.png" id="23_4080x"]
+[ext_resource type="Texture2D" uid="uid://bm56apnh7xtvw" path="res://assets/player/Losing animation/13.png" id="24_socan"]
+[ext_resource type="Texture2D" uid="uid://wp3ulykw1p4s" path="res://assets/player/Losing animation/14.png" id="25_vih6h"]
 [ext_resource type="Texture2D" uid="uid://bhyw0hag5fxi1" path="res://assets/player/bucket/bucket_p2.png" id="26_hbloh"]
+[ext_resource type="Texture2D" uid="uid://dp11s336gdlk5" path="res://assets/player/Losing animation/15.png" id="26_n6vt8"]
+[ext_resource type="Texture2D" uid="uid://mkoy5d7yn7sn" path="res://assets/player/Losing animation/16.png" id="27_mdpb1"]
+[ext_resource type="Texture2D" uid="uid://d1i5l4pa1dkij" path="res://assets/player/Losing animation/17.png" id="28_3nwut"]
 [ext_resource type="Texture2D" uid="uid://x3lmd2su5vgt" path="res://assets/player/Phase 3 (player 1) kanan/2.png" id="31_jsqqu"]
 [ext_resource type="Texture2D" uid="uid://dhnbnwvxajske" path="res://assets/player/Phase 3 (player 1) kanan/3.png" id="32_gskky"]
 [ext_resource type="Texture2D" uid="uid://cu7caru8paevc" path="res://assets/player/Phase 3 (player 1) kanan/4.png" id="33_6d4j1"]
@@ -54,6 +67,18 @@
 [ext_resource type="Texture2D" uid="uid://cajumdvxn6h7y" path="res://assets/player/Phase 4 (player 2) kanan/4.png" id="48_6q27t"]
 [ext_resource type="Texture2D" uid="uid://dadf72ffta7m2" path="res://assets/player/Phase 4 (player 2) kanan/5.png" id="49_nd3ta"]
 [ext_resource type="Texture2D" uid="uid://dvgqhui61jssc" path="res://assets/player/Phase 4 (player 2) kanan/7.png" id="50_4ih6a"]
+[ext_resource type="AudioStream" uid="uid://x632paqql84a" path="res://audio/sfx/utomp3.com - Water Plop  Sound Effect HD.mp3" id="55_e7ii8"]
+[ext_resource type="AudioStream" uid="uid://def3w3dbbsboh" path="res://audio/sfx/utomp3.com - Footsteps walking on grass sound clip.mp3" id="56_ih52b"]
+[ext_resource type="Texture2D" uid="uid://oymewpxm7ppq" path="res://assets/player/Winning animation player 1/1.png" id="64_do54t"]
+[ext_resource type="Texture2D" uid="uid://drrlr05om3i4d" path="res://assets/player/Winning animation player 1/2.png" id="65_fcuvq"]
+[ext_resource type="Texture2D" uid="uid://dmbr2vyaf0fk6" path="res://assets/player/Winning animation player 1/3.png" id="66_hcsey"]
+[ext_resource type="Texture2D" uid="uid://p2mculfea6qc" path="res://assets/player/Winning animation player 1/4.png" id="67_fo4ha"]
+[ext_resource type="Texture2D" uid="uid://h4kv7ly6c6r" path="res://assets/player/Winning animation player 1/5.png" id="68_fm5bi"]
+[ext_resource type="Texture2D" uid="uid://d4frf1mva8r6c" path="res://assets/player/Winning animation player 2/1.png" id="69_hww0x"]
+[ext_resource type="Texture2D" uid="uid://dviktquntftgx" path="res://assets/player/Winning animation player 2/2.png" id="70_s0elw"]
+[ext_resource type="Texture2D" uid="uid://bh5r5h3i4igfd" path="res://assets/player/Winning animation player 2/3.png" id="71_2ea6x"]
+[ext_resource type="Texture2D" uid="uid://bdqbbwktxcftk" path="res://assets/player/Winning animation player 2/4.png" id="72_jpmq7"]
+[ext_resource type="Texture2D" uid="uid://ctt2hg7gvhr0v" path="res://assets/player/Winning animation player 2/5.png" id="73_qml2b"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t80m8"]
 animations = [{
@@ -64,7 +89,7 @@ animations = [{
 "duration": 12.0,
 "texture": ExtResource("11_akomu")
 }],
-"loop": false,
+"loop": true,
 "name": &"idle_phase_1_0",
 "speed": 30.0
 }, {
@@ -143,6 +168,50 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_phase_4_1",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 5.0,
+"texture": ExtResource("16_7758h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_2ficv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_fv6fu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_winot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_mai4h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_cywla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_udqir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_4080x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_socan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_vih6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_n6vt8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_mdpb1")
+}, {
+"duration": 5.0,
+"texture": ExtResource("28_3nwut")
+}],
+"loop": true,
+"name": &"lose",
 "speed": 30.0
 }, {
 "frames": [{
@@ -352,6 +421,46 @@ animations = [{
 "loop": true,
 "name": &"walk_phase_4_1",
 "speed": 30.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("64_do54t")
+}, {
+"duration": 2.0,
+"texture": ExtResource("65_fcuvq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_hcsey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_fo4ha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_fm5bi")
+}],
+"loop": true,
+"name": &"win_0",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("69_hww0x")
+}, {
+"duration": 2.0,
+"texture": ExtResource("70_s0elw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_2ea6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_jpmq7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_qml2b")
+}],
+"loop": true,
+"name": &"win_1",
+"speed": 30.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r87kf"]
@@ -369,7 +478,9 @@ speed = 950.0
 position = Vector2(2.98023e-08, 15)
 scale = Vector2(0.0802002, 0.0840073)
 sprite_frames = SubResource("SpriteFrames_t80m8")
-animation = &"idle_phase_1_0"
+animation = &"lose"
+frame = 10
+frame_progress = 0.915293
 
 [node name="Water" type="Sprite2D" parent="."]
 material = ExtResource("2_0c2mb")
@@ -400,5 +511,13 @@ shape = SubResource("RectangleShape2D_r87kf")
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(3, 43)
 shape = SubResource("RectangleShape2D_t1awj")
+
+[node name="dropletSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("55_e7ii8")
+
+[node name="walkingSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("56_ih52b")
+volume_db = -15.0
+parameters/looping = false
 
 [connection signal="area_entered" from="Collection" to="." method="_on_collection_area_entered"]

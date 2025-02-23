@@ -31,4 +31,3 @@ signal countdown_over
 
 # Emit to change a background group's color
 signal change_background_color(group : int, color : Color)
-
