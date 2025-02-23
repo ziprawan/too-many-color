@@ -31,6 +31,7 @@ var set_score: float:
 
 var game_manager: GameManager
 var can_move: bool = false
+var prev_score:int
 var phase:int = 1
 
 func _ready() -> void:
@@ -39,6 +40,8 @@ func _ready() -> void:
 	# player_id validation
 	if player_id > 1 or player_id < 0:
 		push_error("player_id value can only be 0 or 1")
+		
+	prev_score = game_manager.player_set_tally[player_id]
 	
 	
 	# EventBus set/round shenanigans
@@ -80,8 +83,8 @@ func _process(_delta):
 	#bucket.material.set_shader_parameter("ColorParameter", color)
 
 func on_round_start(round_number):
-	if game_manager.player_set_tally[player_id] > 0 :
-		phase = 2
+	if game_manager.player_set_tally[player_id] > prev_score :
+		phase +=1
 		bucket_2.visible = true
 		bucket.visible = false
 	else:
