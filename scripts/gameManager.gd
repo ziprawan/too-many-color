@@ -30,9 +30,11 @@ func _ready() -> void:
 	start_next_round()
 
 func start_next_round():
+	if is_game_over():
+		return
+	
 	current_round += 1
 	if current_round > round_per_set:
-
 		start_new_set()
 	else:
 		round_is_active = true
@@ -46,6 +48,9 @@ func end_round():
 		start_next_round()
 
 func start_new_set():
+	if is_game_over():
+		return
+	
 	# Determines who gets the point
 	if player_set_scores[0] > player_set_scores[1]: player_set_tally[0] += 1
 	else: player_set_tally[1] += 1
@@ -65,9 +70,21 @@ func start_new_set():
 		EventBus.game_over.emit() # nnti bisa ditambahin game over logic, for now it doesnt do anything
 
 func _process(delta: float) -> void:
+	if is_game_over():
+		return
+	
 	if round_timer - delta >= 0:
 		if time_start:
 			round_timer -= delta
 	elif round_is_active:
 		round_timer = 0
 		end_round()
+
+func is_game_over() -> bool:
+	# Check if any player has won 4 sets
+	if player_set_tally[0] >= 4 or player_set_tally[1] >= 4:
+		round_is_active = false
+		time_start = false
+		EventBus.game_over.emit()
+		return true
+	return false

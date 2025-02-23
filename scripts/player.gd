@@ -49,6 +49,7 @@ func _ready() -> void:
 	EventBus.round_end.connect(on_round_end)
 	EventBus.set_start.connect(on_set_start)
 	EventBus.set_end.connect(on_set_end)
+	EventBus.game_over.connect(on_game_over)
 	# In-game Events shenanigans
 	EventBus.change_player_move_speed.connect(change_move_speed)
 	EventBus.toggle_inverse_blend.connect(toggle_inverse_blend)
@@ -94,6 +95,10 @@ func on_round_start(round_number):
 	color = Color(1, 1, 1)
 	print("round ", round_number, " start!")
 	pass
+#Ketika sudah menang, player ga bisa gerak lagi
+func on_game_over():
+	can_move = false  # Menghentikan pergerakan pemain
+	print("Game over! Player ", player_id, " has stopped moving.")
 
 func on_round_end():
 	print("round end!")

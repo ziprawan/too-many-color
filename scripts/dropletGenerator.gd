@@ -24,6 +24,7 @@ func _ready():
 	EventBus.connect("change_droplet_rate", change_droplet_rate)
 	EventBus.connect("reduce_droplet_count", reduce_droplet_count)
 	EventBus.connect("countdown_over", func(): can_generate = true)
+	EventBus.connect("game_over", on_game_over)
 	#if event_manager:
 		#event_manager.drought_limit.connect(_on_drought_limit)
 		#event_manager.dat_boi.connect(_on_el_nino)
@@ -55,7 +56,10 @@ func reduce_droplet_count(n : int):
 	min_droplet = max(0, min_droplet - n)
 	max_droplet = max(min_droplet, max_droplet - n)
 	pass
-
+#Ketika sudah kelar, drplet generator stop
+func on_game_over():
+	can_generate = false  # Menghentikan generator droplet
+	rain_timer.stop()  # Menghentikan timer
 #func _on_drought_limit():
 	#max_droplet = 1
 	#get_tree().create_timer(2).timeout.connect(func():
