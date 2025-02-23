@@ -7,6 +7,8 @@ signal droplet_collected
 @onready var bucket: Sprite2D = $Bucket
 @onready var bucket_2: Sprite2D = $Bucket2
 @onready var water_sprite: Sprite2D = $Water
+@onready var droplet_sfx: AudioStreamPlayer2D = $dropletSFX
+@onready var walking_sfx: AudioStreamPlayer2D = $walkingSFX
 
 @export var speed = 500.0
 @export var color := Color(1, 1, 1) :
@@ -15,10 +17,12 @@ signal droplet_collected
 		color = value
 @export var player_id: int
 
+
 var starting_position: Vector2
 var direction: Vector2
 var inverse_blend: bool = false
 var inverse_score: bool = false
+var animation_lock:bool = false
 var score: float:
 	# Updates the value in game_manager as well
 	set(value):
@@ -43,7 +47,6 @@ func _ready() -> void:
 		
 	prev_score = game_manager.player_set_tally[player_id]
 	
-	
 	# EventBus set/round shenanigans
 	EventBus.round_start.connect(on_round_start)
 	EventBus.round_end.connect(on_round_end)
@@ -61,36 +64,34 @@ func _ready() -> void:
 	starting_position = global_position
 
 func _process(_delta):
+	if animation_lock:
+		return
 	# Movement Handling
 	direction.x = Input.get_axis("left%s" % [player_id], "right%s" % [player_id])
-
+	
 	if direction:
 		velocity = direction * speed
 		animated_sprite.play("walk_phase_%d_%d"% [phase, player_id])
+		walking_sfx.pitch_scale = randf_range(0.8,1.2)
+		walking_sfx.play()
 		if direction.x < 0:
 			animated_sprite.flip_h = true
 		elif direction.x > 0:
 			animated_sprite.flip_h = false
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
+		animated_sprite.play("idle_phase_%d_%d"% [phase, player_id])
 
 	if can_move:
 		move_and_slide()
-		animated_sprite.play("idle_phase_%d_%d"% [phase, player_id])
+	
 
 	# Color Handling
 	water_sprite.material.set_shader_parameter("ColorParameter", color)
-	print(water_sprite.material.get_shader_parameter("ColorParameter"))
+	#print(water_sprite.material.get_shader_parameter("ColorParameter"))
 	#bucket.material.set_shader_parameter("ColorParameter", color)
 
 func on_round_start(round_number):
-	if game_manager.player_set_tally[player_id] > prev_score :
-		phase +=1
-		bucket_2.visible = true
-		bucket.visible = false
-	else:
-		bucket.visible = true
-		bucket_2.visible = false
 
 	color = Color(1, 1, 1)
 	print("round ", round_number, " start!")
@@ -108,12 +109,23 @@ func on_round_end():
 	pass
 
 func on_set_start(set_number):
+	if game_manager.player_set_tally[player_id] > prev_score :
+		phase = min(4,phase+1)
+		bucket_2.visible = true
+		bucket.visible = false
+	else:
+		bucket.visible = true
+		bucket_2.visible = false
 	print("set ", set_number, " started!")
 	set_score = 0
 	pass
 
 func on_set_end():
-	pass
+	animation_lock = true
+	if game_manager.player_set_tally[player_id] > game_manager.player_set_tally[1-player_id]:
+		animated_sprite.play("win_%d"%player_id)
+	else:
+		animated_sprite.play("lose")
 
 func _on_collection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("droplet"):
@@ -132,9 +144,6 @@ func _on_collection_area_entered(area: Area2D) -> void:
 		game_manager.player_dE[player_id] = Utils.get_deltaE(color, game_manager.current_target_color)
 
 		if inverse_blend:
-			#color.r = max(0, color.r - droplet_color.r)
-			#color.g = max(0, color.g - droplet_color.g)
-			#color.b = max(0, color.b - droplet_color.b)
 			droplet_color.r = 1 - droplet_color.r
 			droplet_color.g = 1 - droplet_color.g
 			droplet_color.b = 1 - droplet_color.b
@@ -142,7 +151,7 @@ func _on_collection_area_entered(area: Area2D) -> void:
 
 		# Debug purpose
 		Globals.player_colors[(1 - player_id) if inverse_score else player_id] = color
-
+		droplet_sfx.play()
 		droplet_collected.emit()
 
 		# Free the object
@@ -156,31 +165,3 @@ func unfreeze_player_movement():
 
 func toggle_inverse_blend():
 	inverse_blend = not inverse_blend
-
-#func _on_speed_up():
-	#speed = 2 * speed
-#
-	#get_tree().create_timer(3).timeout.connect(func():
-		#speed = speed / 2
-	#)
-#
-#func _on_speed_down():
-	#speed = speed / 2
-#
-	#get_tree().create_timer(1).timeout.connect(func():
-		#speed = speed * 2
-	#)
-#
-#func _on_uno_reverse():
-	#inverse_score = true
-#
-	#get_tree().create_timer(5).timeout.connect(func():
-		#inverse_score = false
-	#)
-#
-#func _on_inverse_blend():
-	#inverse_blend = true
-#
-	#get_tree().create_timer(5).timeout.connect(func():
-		#inverse_blend = false
-	#)

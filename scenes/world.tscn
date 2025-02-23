@@ -143,6 +143,7 @@ size = Vector2(174.75, 814)
 [node name="World" type="Node2D"]
 position = Vector2(294, 8.25)
 script = ExtResource("1_x7nmm")
+round_duration = 2.0
 
 [node name="EventManager" type="Node" parent="."]
 script = ExtResource("2_n21n5")
