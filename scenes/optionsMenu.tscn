@@ -36,12 +36,6 @@ text = "Options
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="volume_slider" type="HSlider" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(700, 150)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
 [node name="Exit_Button" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
@@ -50,12 +44,22 @@ size_flags_vertical = 10
 theme_override_font_sizes/font_size = 30
 text = "Exit"
 
+[node name="volume_slider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(700, 150)
+layout_mode = 2
+offset_left = 665.0
+offset_top = 310.0
+offset_right = 1365.0
+offset_bottom = 460.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 108.0
-offset_top = 112.0
-offset_right = 260.0
-offset_bottom = 169.0
+offset_left = 533.0
+offset_top = 364.0
+offset_right = 685.0
+offset_bottom = 421.0
 theme_override_font_sizes/font_size = 25
 text = "Volume : "
 

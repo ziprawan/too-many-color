@@ -1,12 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://tob37jk20ip7"]
+[gd_scene load_steps=20 format=3 uid="uid://tob37jk20ip7"]
 
 [ext_resource type="Script" path="res://scripts/mainMenu.gd" id="1_c7q3s"]
-[ext_resource type="Texture2D" uid="uid://d3flc5ow6bjcn" path="res://assets/placeholder/main_bg.jpg" id="2_b57wa"]
+[ext_resource type="Texture2D" uid="uid://dljj7bkvvq4qn" path="res://assets/background/game_background/game background.png" id="2_0n4m2"]
+[ext_resource type="Texture2D" uid="uid://be0risb6h0wpn" path="res://assets/mainMenu/menu frame.png" id="3_2wek3"]
 [ext_resource type="PackedScene" uid="uid://ctuu6xxq026mm" path="res://scenes/optionsMenu.tscn" id="3_lmu6m"]
+[ext_resource type="Texture2D" uid="uid://bdwsnkxl2yowb" path="res://assets/mainMenu/option.png" id="4_yhhvb"]
+[ext_resource type="Texture2D" uid="uid://by2a2fiq11ujx" path="res://assets/mainMenu/single2.png" id="5_36l4h"]
+[ext_resource type="Texture2D" uid="uid://4q2x1n2lnw4n" path="res://assets/mainMenu/multi.png" id="5_ubxls"]
+[ext_resource type="Texture2D" uid="uid://coacq03osaq5g" path="res://assets/mainMenu/replaypro.png" id="6_28e8h"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p4stf"]
-texture = ExtResource("2_b57wa")
+texture = ExtResource("2_0n4m2")
 modulate_color = Color(0.332881, 0.332881, 0.332881, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2pwgh"]
+texture = ExtResource("3_2wek3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kg2e1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x481w"]
 
@@ -37,6 +47,14 @@ corner_radius_bottom_left = 16
 shadow_size = 5
 shadow_offset = Vector2(0, 3.41)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7mnek"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rl6tm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2nc6d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_srq1y"]
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -55,47 +73,60 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_p4stf")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="panelBackground" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -217.5
-offset_top = -136.0
-offset_right = 217.5
-offset_bottom = 136.0
+offset_left = -1355.0
+offset_top = -958.0
+offset_right = 1318.0
+offset_bottom = 880.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 9
+theme_override_styles/panel = SubResource("StyleBoxTexture_2pwgh")
 
-[node name="GameTitleLabel" type="Label" parent="VBoxContainer"]
+[node name="GameTitleLabel" type="Label" parent="."]
 layout_mode = 2
+offset_left = 541.0
+offset_top = 119.0
+offset_right = 1349.0
+offset_bottom = 188.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 5
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_kg2e1")
 text = "Too many color"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 33
-theme_override_styles/focus = SubResource("StyleBoxEmpty_x481w")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gfpfx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_wufrp")
-theme_override_styles/normal = SubResource("StyleBoxFlat_gb4bs")
-text = "Start Game"
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -426.0
+offset_top = -185.0
+offset_right = 382.0
+offset_bottom = 312.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 9
+alignment = 1
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_direction = 1
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
@@ -105,11 +136,40 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_x481w")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gfpfx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wufrp")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gb4bs")
-text = "Options"
+icon = ExtResource("4_yhhvb")
+flat = true
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 33
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x481w")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gfpfx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wufrp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gb4bs")
+icon = ExtResource("5_36l4h")
+flat = true
+icon_alignment = 1
+
+[node name="multiplayerbutton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7mnek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rl6tm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2nc6d")
+theme_override_styles/normal = SubResource("StyleBoxFlat_srq1y")
+icon = ExtResource("5_ubxls")
+flat = true
 
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
@@ -119,13 +179,51 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_x481w")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gfpfx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wufrp")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gb4bs")
-text = "Exit
+text = "
 "
+icon = ExtResource("6_28e8h")
+flat = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -962.0
+offset_top = -585.0
+offset_right = -862.0
+offset_bottom = -428.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 9
+alignment = 1
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer2"]
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 33
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x481w")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gfpfx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wufrp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gb4bs")
+icon = ExtResource("4_yhhvb")
+flat = true
 
 [node name="OptionsMenu" parent="." instance=ExtResource("3_lmu6m")]
 visible = false
 layout_mode = 1
 
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/multiplayerbutton" to="." method="_on_multiplayerbutton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer2/OptionsButton" to="." method="_on_options_pressed"]
