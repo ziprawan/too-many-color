@@ -55,6 +55,7 @@ use_parent_material = true
 texture = ExtResource("10_buw05")
 
 [node name="Light" type="Sprite2D" parent="Layers"]
+modulate = Color(1, 1, 1, 0.282353)
 z_index = 10
 texture = ExtResource("11_xuqyj")
 

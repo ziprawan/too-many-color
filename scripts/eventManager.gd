@@ -56,6 +56,7 @@ func trigger_random_event():
 
 func start_event(event : Event):
 	active_event = event
+	EventBus.event_started.emit(event)
 	event.on_triggered()
 	active_event_timer = event.duration
 

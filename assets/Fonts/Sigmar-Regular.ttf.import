@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://c417s7s2syvkk"
-path="res://.godot/imported/Sigmar-Regular.ttf-95abda0cc5f508def45eed9e74058229.fontdata"
+path="res://.godot/imported/Sigmar-Regular.ttf-f836883876c8a260d50c6c2c2905154e.fontdata"
 
 [deps]
 
-source_file="res://Fonts/Sigmar-Regular.ttf"
-dest_files=["res://.godot/imported/Sigmar-Regular.ttf-95abda0cc5f508def45eed9e74058229.fontdata"]
+source_file="res://assets/Fonts/Sigmar-Regular.ttf"
+dest_files=["res://.godot/imported/Sigmar-Regular.ttf-f836883876c8a260d50c6c2c2905154e.fontdata"]
 
 [params]
 

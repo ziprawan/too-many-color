@@ -8,7 +8,7 @@ signal droplet_collected
 @onready var bucket_2: Sprite2D = $Bucket2
 @onready var water_sprite: Sprite2D = $Water
 
-@export var speed = 500.0
+@export var speed = 450.0
 @export var color := Color(1, 1, 1) :
 	set(value):
 		game_manager.player_colors[player_id] = value

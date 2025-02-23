@@ -7,7 +7,7 @@ class_name GameManager
 var round_timer: float
 var round_is_active: bool = true
 var round_per_set := 1
-var set_per_game = 7
+var set_per_game = 5
 var current_round = 0
 var current_set = 0
 var time_start:bool = false
