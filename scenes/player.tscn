@@ -1,21 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6uwi7if3vw7l"]
+[gd_scene load_steps=7 format=3 uid="uid://c6uwi7if3vw7l"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_iajo7"]
-[ext_resource type="Material" uid="uid://d1w0mfq40x8cq" path="res://assets/themes/recolor_material.tres" id="2_0c2mb"]
-[ext_resource type="Texture2D" uid="uid://cftatcbvm11jh" path="res://assets/placeholder/morganfreemantrue.png" id="2_oy43o"]
+[ext_resource type="Material" uid="uid://d1w0mfq40x8cq" path="res://assets/materials/recolor_material.tres" id="2_0c2mb"]
+[ext_resource type="Texture2D" uid="uid://dffc55yl44eul" path="res://assets/player/Phase 1 (karakter 1 & 2) kanan/1.png" id="2_k6mwc"]
+[ext_resource type="Texture2D" uid="uid://d2rvqijknsssm" path="res://assets/player/bucket/bucket_p1.png" id="3_mpa6j"]
+[ext_resource type="Texture2D" uid="uid://c6wctqy4wcoaw" path="res://assets/player/bucket/water.png" id="5_76fow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r87kf"]
 size = Vector2(52, 26)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("water_sprite") groups=["Player"]]
 script = ExtResource("1_iajo7")
+water_sprite = NodePath("Water")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="CharacterSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 15)
+scale = Vector2(0.0833333, 0.0833333)
+texture = ExtResource("2_k6mwc")
+
+[node name="Water" type="Sprite2D" parent="."]
 material = ExtResource("2_0c2mb")
-scale = Vector2(0.541667, 0.541667)
-texture = ExtResource("2_oy43o")
+position = Vector2(-1, 20)
+scale = Vector2(0.0859375, 0.0859375)
+texture = ExtResource("5_76fow")
+
+[node name="Bucket" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-1, 20)
+scale = Vector2(0.0859375, 0.0859375)
+texture = ExtResource("3_mpa6j")
 
 [node name="Collection" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collection"]
 position = Vector2(0, -13)

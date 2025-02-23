@@ -10,7 +10,7 @@ var color: Color = Color(1, 1, 1):
 
 func _ready() -> void:
 	game_manager = get_tree().current_scene
-	game_manager.round_start.connect(on_round_start)
+	EventBus.round_start.connect(on_round_start)
 	material.set_shader_parameter("ColorParameter", game_manager.current_target_color)
 
 func on_round_start(_round_number):

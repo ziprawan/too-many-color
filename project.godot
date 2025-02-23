@@ -17,8 +17,9 @@ config/icon="res://assets/placeholder/icon.svg"
 
 [autoload]
 
-Globals="*res://scripts/globals.gd"
-Utils="*res://scripts/utils.gd"
+Globals="*res://scripts/temp/globals.gd"
+Utils="*res://scripts/globals/utils.gd"
+EventBus="*res://scripts/eventBus.gd"
 
 [display]
 

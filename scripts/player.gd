@@ -3,11 +3,12 @@ class_name Player
 
 signal droplet_collected
 
-@onready var sprite: Sprite2D = $Sprite
+#@onready var sprite: Sprite2D = $Sprite
 
 @export var speed = 700.0
 @export var color := Color(1, 1, 1)
 @export var player_id: int
+@export var water_sprite: Sprite2D
 
 var starting_position: Vector2
 var direction: Vector2
@@ -26,27 +27,21 @@ var set_score: float:
 var game_manager: GameManager
 
 func _ready() -> void:
+	game_manager = get_tree().current_scene
 	# player_id validation
 	if player_id > 1 or player_id < 0:
 		push_error("player_id value can only be 0 or 1")
-
-	game_manager = get_tree().current_scene
-	game_manager.round_start.connect(on_round_start)
-	game_manager.round_end.connect(on_round_end)
-	game_manager.set_start.connect(on_set_start)
-	game_manager.set_end.connect(on_set_end)
-	sprite.material = sprite.material.duplicate()
+	# EventBus set/round shenanigans
+	EventBus.round_start.connect(on_round_start)
+	EventBus.round_end.connect(on_round_end)
+	EventBus.set_start.connect(on_set_start)
+	EventBus.set_end.connect(on_set_end)
+	# In-game Events shenanigans
+	EventBus.change_player_move_speed.connect(change_move_speed)
+	EventBus.toggle_inverse_blend.connect(toggle_inverse_blend)
 	
+	water_sprite.material = water_sprite.material.duplicate()
 	starting_position = global_position
-
-	add_to_group("players")
-
-	var events = get_node("/root/Worlds/Events")
-	if events:
-		events.speed_up.connect(_on_speed_up)
-		events.speed_down.connect(_on_speed_down)
-		events.inverse_blend.connect(_on_inverse_blend)
-		events.uno_reverse.connect(_on_uno_reverse)
 
 func _process(_delta):
 	# Movement Handling
@@ -56,9 +51,9 @@ func _process(_delta):
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
 	move_and_slide()
-	
+
 	# Color Handling
-	sprite.material.set_shader_parameter("ColorParameter", color)
+	water_sprite.material.set_shader_parameter("ColorParameter", color)
 
 func on_round_start(round_number):
 	print("round ", round_number, " start!")
@@ -84,7 +79,7 @@ func _on_collection_area_entered(area: Area2D) -> void:
 		var droplet = area.get_parent()
 		var droplet_color: Color = droplet.color
 
-		print("Droplet color", droplet_color)
+		#print("Droplet color", droplet_color)
 
 		# Set color alpha
 		color.a = 0.8
@@ -92,15 +87,17 @@ func _on_collection_area_entered(area: Area2D) -> void:
 
 		# Blend and calculate the player's score
 		color = color.blend(droplet_color)
-		score = 1000 - (Utils.get_deltaE(color, game_manager.current_target_color) ** 3.58)
+		score = 1000 - (Utils.get_deltaE(color, game_manager.current_target_color) ** 3.38)
 		game_manager.player_dE[player_id] = Utils.get_deltaE(color, game_manager.current_target_color)
 
 		if inverse_blend:
-			color.r = max(0, color.r - droplet_color.r)
-			color.g = max(0, color.g - droplet_color.g)
-			color.b = max(0, color.b - droplet_color.b)
-		else:
-			color = color.blend(droplet_color)
+			#color.r = max(0, color.r - droplet_color.r)
+			#color.g = max(0, color.g - droplet_color.g)
+			#color.b = max(0, color.b - droplet_color.b)
+			droplet_color.r = 1 - droplet_color.r
+			droplet_color.g = 1 - droplet_color.g
+			droplet_color.b = 1 - droplet_color.b
+		color = color.blend(droplet_color)
 
 		# Debug purpose
 		Globals.player_colors[(1 - player_id) if inverse_score else player_id] = color
@@ -110,30 +107,36 @@ func _on_collection_area_entered(area: Area2D) -> void:
 		# Free the object
 		droplet.queue_free()
 
-func _on_speed_up():
-	speed = 2 * speed
+func change_move_speed(ratio : float):
+	speed *= ratio
 
-	get_tree().create_timer(3).timeout.connect(func():
-		speed = speed / 2
-	)
+func toggle_inverse_blend():
+	inverse_blend = not inverse_blend
 
-func _on_speed_down():
-	speed = speed / 2
-
-	get_tree().create_timer(1).timeout.connect(func():
-		speed = speed * 2
-	)
-
-func _on_uno_reverse():
-	inverse_score = true
-
-	get_tree().create_timer(5).timeout.connect(func():
-		inverse_score = false
-	)
-
-func _on_inverse_blend():
-	inverse_blend = true
-
-	get_tree().create_timer(5).timeout.connect(func():
-		inverse_blend = false
-	)
+#func _on_speed_up():
+	#speed = 2 * speed
+#
+	#get_tree().create_timer(3).timeout.connect(func():
+		#speed = speed / 2
+	#)
+#
+#func _on_speed_down():
+	#speed = speed / 2
+#
+	#get_tree().create_timer(1).timeout.connect(func():
+		#speed = speed * 2
+	#)
+#
+#func _on_uno_reverse():
+	#inverse_score = true
+#
+	#get_tree().create_timer(5).timeout.connect(func():
+		#inverse_score = false
+	#)
+#
+#func _on_inverse_blend():
+	#inverse_blend = true
+#
+	#get_tree().create_timer(5).timeout.connect(func():
+		#inverse_blend = false
+	#)

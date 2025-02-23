@@ -12,7 +12,11 @@ func _ready():
 	#color = Color.from_hsv(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1), 1) # Full Range
 	sprite.material.set_shader_parameter("ColorParameter", color)
 	global_position = spawn_position
+	EventBus.connect("change_droplet_velocity", change_velocity)
 
 func _process(_delta):
 	velocity = Vector2(0, speed)
 	move_and_slide()
+
+func change_velocity(ratio : float):
+	speed *= ratio

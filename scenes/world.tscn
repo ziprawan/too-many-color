@@ -1,14 +1,20 @@
-[gd_scene load_steps=20 format=3 uid="uid://b1tnns8p63rtn"]
+[gd_scene load_steps=26 format=3 uid="uid://b1tnns8p63rtn"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_x7nmm"]
 [ext_resource type="PackedScene" uid="uid://c6uwi7if3vw7l" path="res://scenes/player.tscn" id="2_5t31v"]
 [ext_resource type="Texture2D" uid="uid://bkr0oojv2vbyl" path="res://assets/placeholder/icon.svg" id="2_fxr3v"]
+[ext_resource type="Script" path="res://scripts/eventManager.gd" id="2_n21n5"]
 [ext_resource type="Texture2D" uid="uid://cko7gpaj105fy" path="res://assets/placeholder/base_circle_fill-export.png" id="2_ycvdk"]
+[ext_resource type="Script" path="res://scripts/resources/events/novemberRain.gd" id="3_bfh5j"]
 [ext_resource type="Texture2D" uid="uid://dphtkb2phhpry" path="res://assets/placeholder/clouds.png" id="3_enf2l"]
 [ext_resource type="Script" path="res://scripts/dropletGenerator.gd" id="3_w1s5b"]
 [ext_resource type="Script" path="res://scripts/targetColor.gd" id="4_0dd84"]
+[ext_resource type="Script" path="res://scripts/resources/events/madeInHeaven.gd" id="4_8sy1i"]
+[ext_resource type="Script" path="res://scripts/resources/events/madeInHell.gd" id="5_lctjc"]
+[ext_resource type="Script" path="res://scripts/resources/events/bohemianRhapsody.gd" id="6_86l57"]
+[ext_resource type="Script" path="res://scripts/resources/events/drought.gd" id="7_1nary"]
 [ext_resource type="PackedScene" uid="uid://dpmi6gmao34fi" path="res://scenes/gameplayUi.tscn" id="8_8tjxo"]
-[ext_resource type="Texture2D" uid="uid://htju07b34orj" path="res://assets/terraria_map_pack_for_swirft/mapArt/Backgrounds/BG_BP7.jpg" id="8_qfexp"]
+[ext_resource type="Texture2D" uid="uid://htju07b34orj" path="res://assets/placeholder/terraria_map_pack_for_swirft/mapArt/Backgrounds/BG_BP7.jpg" id="8_qfexp"]
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_62kpd"]
 parameter_name = "ColorParameter"
@@ -144,6 +150,27 @@ size = Vector2(174.75, 814)
 position = Vector2(294, 8.25)
 script = ExtResource("1_x7nmm")
 
+[node name="EventManager" type="Node" parent="."]
+script = ExtResource("2_n21n5")
+
+[node name="NovemberRain" type="Node" parent="EventManager"]
+script = ExtResource("3_bfh5j")
+ratio = 9.0
+
+[node name="MadeInHeaven" type="Node" parent="EventManager"]
+script = ExtResource("4_8sy1i")
+
+[node name="MadeInHell" type="Node" parent="EventManager"]
+script = ExtResource("5_lctjc")
+ratio = 2.0
+
+[node name="BohemianRhapsody" type="Node" parent="EventManager"]
+script = ExtResource("6_86l57")
+
+[node name="Drought" type="Node" parent="EventManager"]
+script = ExtResource("7_1nary")
+reduce_by = 3.0
+
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -3
 texture_filter = 1
@@ -165,13 +192,15 @@ position = Vector2(115.75, 322.75)
 scale = Vector2(6.97266, 4.79688)
 texture = ExtResource("2_fxr3v")
 
-[node name="Cloud" type="Node2D" parent="."]
+[node name="Cloud" type="Node2D" parent="." node_paths=PackedStringArray("event_manager", "rain_timer")]
 position = Vector2(-1084, -372)
 scale = Vector2(0.571027, 0.502577)
 script = ExtResource("3_w1s5b")
 height = -250.0
+event_manager = NodePath("../EventManager")
+rain_timer = NodePath("Timer")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Cloud"]
+[node name="Sprite" type="Sprite2D" parent="Cloud"]
 visible = false
 position = Vector2(2103.23, 753.616)
 texture = ExtResource("3_enf2l")
@@ -187,7 +216,7 @@ position = Vector2(110, 275.75)
 position = Vector2(-192, 500)
 collision_layer = 2
 
-[node name="CollisionPlayer1" type="CollisionShape2D" parent="Player1"]
+[node name="Collision" type="CollisionShape2D" parent="Player1"]
 position = Vector2(-0.25, 1.0625)
 shape = SubResource("RectangleShape2D_gnbq4")
 
@@ -196,7 +225,7 @@ position = Vector2(402, 500)
 collision_layer = 2
 player_id = 1
 
-[node name="CollisionPlayer2" type="CollisionShape2D" parent="Player2"]
+[node name="Collision" type="CollisionShape2D" parent="Player2"]
 position = Vector2(1, 0.75)
 shape = SubResource("RectangleShape2D_inhaw")
 
