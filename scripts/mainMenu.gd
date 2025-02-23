@@ -1,17 +1,15 @@
 class_name MainMenu
 extends Control
 
-@onready var options_button = $VBoxContainer/OptionsButton as Button
-@onready var options_menu = $OptionsMenu as OptionsMenu
-@onready var vbox_container = $VBoxContainer as VBoxContainer
+@onready var vbox_container: VBoxContainer = $VBoxContainer
+@onready var start_button: Button = $VBoxContainer/StartButton
+@onready var options_button: Button = $VBoxContainer/OptionsButton
+@onready var exit_button: Button = $VBoxContainer/ExitButton
 
-# Called when the node enters the scene tree for the first time.
+@onready var options_menu: OptionsMenu = $OptionsMenu
+
 func _ready() -> void:
 	handle_connecting_signals()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
 
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/world.tscn")
@@ -29,5 +27,12 @@ func on_exit_options_menu() -> void:
 	options_menu.visible = false
 
 func handle_connecting_signals() -> void:
-	options_button.button_down.connect(_on_options_pressed)
+	
+	start_button.pressed.connect(_on_start_pressed)
+	options_button.pressed.connect(_on_options_pressed)
+	exit_button.pressed.connect(_on_exit_pressed)
 	options_menu.exit_options_menu.connect(on_exit_options_menu)
+
+
+func _on_multiplayerbutton_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/world.tscn")
