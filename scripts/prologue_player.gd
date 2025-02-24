@@ -8,6 +8,7 @@ extends Control
 var MAIN_MENU_SCENE_PATH = "scenes/mainMenu.tscn"
 
 func _ready() -> void:
+  Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
   skip_label.visible = false
   video_player.play()
   ResourceLoader.load_threaded_request(MAIN_MENU_SCENE_PATH)
@@ -35,4 +36,5 @@ func _on_button_pressed() -> void:
     _on_video_stream_player_finished()
 
 func _on_video_stream_player_finished() -> void:
+  Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
   get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(MAIN_MENU_SCENE_PATH))

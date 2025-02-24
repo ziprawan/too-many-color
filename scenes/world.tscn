@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://scripts/resources/events/madeInHell.gd" id="5_lctjc"]
 [ext_resource type="Script" path="res://scripts/resources/events/bohemianRhapsody.gd" id="6_86l57"]
 [ext_resource type="Script" path="res://scripts/resources/events/drought.gd" id="7_1nary"]
-[ext_resource type="Script" path="res://scripts/resources/events/uno_reverse.gd" id="8_8qyn4"]
+[ext_resource type="Script" path="res://scripts/resources/events/unoReverse.gd" id="8_8qyn4"]
 [ext_resource type="PackedScene" uid="uid://dpmi6gmao34fi" path="res://scenes/gameplayUi.tscn" id="8_8tjxo"]
 [ext_resource type="PackedScene" uid="uid://counwxdujdcu8" path="res://scenes/background.tscn" id="8_y1d32"]
 [ext_resource type="Script" path="res://scripts/resources/events/elNino.gd" id="9_cabqs"]
