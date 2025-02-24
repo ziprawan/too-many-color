@@ -36,7 +36,6 @@ script = ExtResource("1_cgnlm")
 video_player = NodePath("VideoStreamPlayer")
 skip_label = NodePath("SkipLabel")
 loading_label = NodePath("LoadPercent")
-wait_video = 10.0
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 layout_mode = 0

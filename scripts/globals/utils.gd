@@ -1,5 +1,10 @@
 extends Node
 
+var time_start = 0
+
+func _ready() -> void:
+	time_start = Time.get_unix_time_from_system()
+
 func rgb_to_xyz(rgb: Color, normalized = true):
 	var r = rgb.r
 	var g = rgb.g
@@ -27,3 +32,6 @@ func get_deltaE(c1: Color, c2: Color):
 
 func round_to_dec(num: float, digit: int):
 	return round(num * pow(10.0, digit)) / pow(10.0, digit)
+
+func get_elapsed_time():
+	return Time.get_unix_time_from_system() - time_start

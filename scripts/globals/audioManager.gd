@@ -1,13 +1,21 @@
 extends Node2D
 
 var sound_effects_dict : Dictionary = {}
-@export var sound_effects : Array[SoundEffect]
 
+@export var sound_effects : Array[SoundEffect]
+@export var bgm_player : AudioStreamPlayer
+var bgm_playback : AudioStreamPlaybackInteractive
 
 func _ready() -> void:
+	print(get_tree_string_pretty())
+	bgm_player.play()
+	bgm_playback = bgm_player.get_stream_playback()
+	print(bgm_player)
 	for sound_effect in sound_effects:
 		sound_effects_dict[sound_effect.type] = sound_effect
-	pass
+
+func switch_bgm_to(name : String):
+	bgm_playback.switch_to_clip_by_name(name)
 
 func play_sound_effect(type : SoundEffect.SOUND_EFFECT_TYPE):
 	if sound_effects_dict.has(type):
@@ -20,6 +28,7 @@ func play_sound_effect(type : SoundEffect.SOUND_EFFECT_TYPE):
 			new_audio_player.stream = sound_effect.audio
 			new_audio_player.volume_db = sound_effect.volume
 			new_audio_player.pitch_scale = sound_effect.pitch_scale
+			new_audio_player.pitch_scale += randf_range(-sound_effect.pitch_randomness, sound_effect.pitch_randomness)
 			new_audio_player.finished.connect(sound_effect.on_audio_finished)
 			new_audio_player.finished.connect(new_audio_player.queue_free)
 			new_audio_player.play()

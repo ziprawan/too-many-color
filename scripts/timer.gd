@@ -14,16 +14,17 @@ func start_countdown():
 	# Loop selama waktu countdown belum habis
 	while time_left > 0:
 		# Update teks label
-		countdown_label.text = " %d" % time_left
+		countdown_label.text = str("[center]", time_left)
 		
 		# Tunggu 1 detik
 		await get_tree().create_timer(1.0).timeout
 		
 		# Kurangi waktu
+		AudioManager.play_sound_effect(SoundEffect.SOUND_EFFECT_TYPE.UI_BUTTON_PRESS)
 		time_left -= 1
 	
 	# Setelah countdown selesai, update teks menjadi "GO!"
-	countdown_label.text = "GO!"
+	countdown_label.text = "[center]GO!"
 	# Kirim sinyal countdown_over
 	EventBus.emit_signal("countdown_over")
 	

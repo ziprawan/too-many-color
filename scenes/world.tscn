@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b1tnns8p63rtn"]
+[gd_scene load_steps=29 format=3 uid="uid://b1tnns8p63rtn"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_x7nmm"]
 [ext_resource type="PackedScene" uid="uid://c6uwi7if3vw7l" path="res://scenes/player.tscn" id="2_5t31v"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://scripts/resources/events/cMoon.gd" id="10_3jrcn"]
 [ext_resource type="Script" path="res://scripts/resources/events/darkness.gd" id="11_llrnj"]
 [ext_resource type="Texture2D" uid="uid://bwvia6kiqgr3f" path="res://assets/blindness.png" id="12_m5m6y"]
+[ext_resource type="PackedScene" path="res://scenes/gameOverScreen.tscn" id="14_hh3sa"]
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_62kpd"]
 parameter_name = "ColorParameter"
@@ -147,14 +148,12 @@ size = Vector2(174.75, 814)
 [node name="World" type="Node2D"]
 position = Vector2(294, 8.25)
 script = ExtResource("1_x7nmm")
-round_duration = 20.0
 
 [node name="EventManager" type="Node" parent="."]
 script = ExtResource("2_n21n5")
 
 [node name="NovemberRain" type="Node" parent="EventManager"]
 script = ExtResource("3_bfh5j")
-ratio = 9.0
 description = "prepare your umbrella folks, it's boutta rain hard"
 cooldown_duration = 6.0
 
@@ -175,6 +174,7 @@ cooldown_duration = 6.0
 
 [node name="Drought" type="Node" parent="EventManager"]
 script = ExtResource("7_1nary")
+reduce_by = 3.0
 description = "uh oh.. where water"
 cooldown_duration = 6.0
 
@@ -206,21 +206,31 @@ scale = Vector2(4, 4)
 texture = ExtResource("12_m5m6y")
 
 [node name="Background" parent="." instance=ExtResource("8_y1d32")]
+position = Vector2(-848, -265.25)
 
-[node name="Target Color" type="Sprite2D" parent="."]
-z_index = 4
-material = SubResource("ShaderMaterial_77wvn")
-position = Vector2(-376, 34.75)
-texture = ExtResource("2_ycvdk")
-script = ExtResource("4_0dd84")
+[node name="Arena" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(115.75, 322.75)
+scale = Vector2(6.97266, 4.79688)
 
-[node name="Cloud" type="Node2D" parent="." node_paths=PackedStringArray("event_manager", "rain_timer")]
+[node name="Cloud" type="Node2D" parent="." node_paths=PackedStringArray("point_l", "point_r", "event_manager", "rain_timer")]
 position = Vector2(-1084, -372)
 scale = Vector2(0.571027, 0.502577)
 script = ExtResource("3_w1s5b")
+point_l = NodePath("left_bound")
+point_r = NodePath("right_bound")
 height = -250.0
+min_droplet = 4
+max_droplet = 6
 event_manager = NodePath("../EventManager")
 rain_timer = NodePath("Timer")
+
+[node name="left_bound" type="Marker2D" parent="Cloud"]
+position = Vector2(577.906, 124.857)
+
+[node name="right_bound" type="Marker2D" parent="Cloud"]
+position = Vector2(3505.96, 148.733)
 
 [node name="Sprite" type="Sprite2D" parent="Cloud"]
 visible = false
@@ -245,6 +255,22 @@ player_id = 1
 
 [node name="UI" parent="." instance=ExtResource("8_8tjxo")]
 
+[node name="GameOverScreen" parent="UI" instance=ExtResource("14_hh3sa")]
+visible = false
+z_index = 7
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 2.0
+offset_bottom = 2.0
+
+[node name="temp_Target Color" type="Sprite2D" parent="UI"]
+z_index = 8
+material = SubResource("ShaderMaterial_77wvn")
+position = Vector2(964, 21)
+scale = Vector2(0.933, 0.933)
+texture = ExtResource("2_ycvdk")
+script = ExtResource("4_0dd84")
+
 [node name="Tembok1" type="StaticBody2D" parent="."]
 
 [node name="CollisonTembok1" type="CollisionShape2D" parent="Tembok1"]
@@ -258,3 +284,5 @@ position = Vector2(1158.63, 399.75)
 shape = SubResource("RectangleShape2D_onlhw")
 
 [connection signal="timeout" from="Cloud/Timer" to="Cloud" method="_on_timer_timeout"]
+
+[editable path="UI"]

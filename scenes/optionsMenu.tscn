@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctuu6xxq026mm"]
+[gd_scene load_steps=6 format=3 uid="uid://ctuu6xxq026mm"]
 
 [ext_resource type="Script" path="res://scripts/optionsMenu.gd" id="1_6q2wj"]
+[ext_resource type="FontFile" uid="uid://c417s7s2syvkk" path="res://assets/Fonts/Sigmar-Regular.ttf" id="2_qk7us"]
+[ext_resource type="FontFile" uid="uid://bg2qt3ec1jxi4" path="res://assets/Fonts/Kavivanar-Regular.ttf" id="3_y8d6c"]
+[ext_resource type="Script" path="res://scripts/optionsDisplay.gd" id="4_7hvjo"]
 
-[node name="Options_Menu" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qqlge"]
+bg_color = Color(0.605274, 0.605274, 0.605274, 0.392157)
+
+[node name="Options_Menu" type="Control" node_paths=PackedStringArray("volume_slider", "round_duration_slider", "rounds_per_set_slider", "exit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,57 +16,165 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6q2wj")
+volume_slider = NodePath("OptionsContainer/Volume/Volume")
+round_duration_slider = NodePath("OptionsContainer/RoundDuration/RoundDuration")
+rounds_per_set_slider = NodePath("OptionsContainer/RoundsPerSet/RoundCount")
+exit_button = NodePath("Exit_Button")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1924.0
+offset_bottom = 1077.0
+
+[node name="options_label" type="RichTextLabel" parent="."]
+layout_mode = 2
+offset_left = 12.0
+offset_top = 273.0
+offset_right = 1908.0
+offset_bottom = 342.0
+theme_override_colors/font_outline_color = Color(0.172833, 0.172833, 0.172833, 1)
+theme_override_constants/outline_size = 22
+theme_override_fonts/normal_font = ExtResource("2_qk7us")
+theme_override_font_sizes/normal_font_size = 41
+bbcode_enabled = true
+text = "[center][wave amp=50 freq=3 connected=1]Options
+"
+fit_content = true
+
+[node name="Exit_Button" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 80)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = 152.0
+offset_right = 96.0
+offset_bottom = 232.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="options_label" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/font_size = 32
-text = "Options
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Exit_Button" type="Button" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(150, 80)
-layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
+theme_override_fonts/font = ExtResource("3_y8d6c")
 theme_override_font_sizes/font_size = 30
-text = "Exit"
+theme_override_styles/hover = SubResource("StyleBoxFlat_qqlge")
+text = "Save & Exit"
 
-[node name="volume_slider" type="HSlider" parent="."]
-custom_minimum_size = Vector2(700, 150)
+[node name="OptionsContainer" type="HFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -516.0
+offset_top = -174.0
+offset_right = 516.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Volume" type="HBoxContainer" parent="OptionsContainer" node_paths=PackedStringArray("slider", "label")]
 layout_mode = 2
-offset_left = 665.0
-offset_top = 310.0
-offset_right = 1365.0
-offset_bottom = 460.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
+theme_override_constants/separation = 50
+alignment = 2
+script = ExtResource("4_7hvjo")
+slider = NodePath("Volume")
+suffix = "%"
+label = NodePath("RichTextLabel3")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 533.0
-offset_top = 364.0
-offset_right = 685.0
-offset_bottom = 421.0
+[node name="Label2" type="Label" parent="OptionsContainer/Volume"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qk7us")
 theme_override_font_sizes/font_size = 25
 text = "Volume : "
+horizontal_alignment = 2
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit_Button" to="." method="_on_exit_button_pressed"]
+[node name="Volume" type="HSlider" parent="OptionsContainer/Volume"]
+custom_minimum_size = Vector2(583.775, 100.295)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+min_value = 1.0
+value = 50.0
+
+[node name="RichTextLabel3" type="Label" parent="OptionsContainer/Volume"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_y8d6c")
+theme_override_font_sizes/font_size = 21
+text = "wadwadwad"
+vertical_alignment = 1
+
+[node name="RoundDuration" type="HBoxContainer" parent="OptionsContainer" node_paths=PackedStringArray("slider", "label")]
+layout_mode = 2
+theme_override_constants/separation = 50
+script = ExtResource("4_7hvjo")
+slider = NodePath("RoundDuration")
+suffix = "s"
+label = NodePath("RichTextLabel3")
+
+[node name="Label" type="Label" parent="OptionsContainer/RoundDuration"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qk7us")
+theme_override_font_sizes/font_size = 25
+text = "Round Duration :"
+horizontal_alignment = 2
+
+[node name="RoundDuration" type="HSlider" parent="OptionsContainer/RoundDuration"]
+custom_minimum_size = Vector2(583.775, 100.295)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+min_value = 10.0
+max_value = 120.0
+step = 5.0
+value = 60.0
+tick_count = 12
+ticks_on_borders = true
+
+[node name="RichTextLabel3" type="Label" parent="OptionsContainer/RoundDuration"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_y8d6c")
+theme_override_font_sizes/font_size = 21
+text = "wadwadwad"
+vertical_alignment = 1
+
+[node name="RoundsPerSet" type="HBoxContainer" parent="OptionsContainer" node_paths=PackedStringArray("slider", "label")]
+layout_mode = 2
+theme_override_constants/separation = 50
+script = ExtResource("4_7hvjo")
+slider = NodePath("RoundCount")
+suffix = " Rounds"
+label = NodePath("RichTextLabel3")
+
+[node name="Label3" type="Label" parent="OptionsContainer/RoundsPerSet"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qk7us")
+theme_override_font_sizes/font_size = 25
+text = "Rounds / Set :"
+horizontal_alignment = 2
+
+[node name="RoundCount" type="HSlider" parent="OptionsContainer/RoundsPerSet"]
+custom_minimum_size = Vector2(583.775, 100.295)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 6.0
+value = 4.0
+tick_count = 6
+ticks_on_borders = true
+
+[node name="RichTextLabel3" type="Label" parent="OptionsContainer/RoundsPerSet"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_y8d6c")
+theme_override_font_sizes/font_size = 21
+text = "wadwadwad"
+vertical_alignment = 1
+
+[connection signal="pressed" from="Exit_Button" to="." method="_on_exit_button_pressed"]
