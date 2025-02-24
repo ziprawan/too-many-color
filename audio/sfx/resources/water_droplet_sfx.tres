@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SoundEffect" load_steps=3 format=3 uid="uid://d22iendd6nfs8"]
+
+[ext_resource type="AudioStream" uid="uid://x632paqql84a" path="res://audio/sfx/water-plop.mp3" id="1_gkun2"]
+[ext_resource type="Script" path="res://scripts/resources/soundEffectSettings.gd" id="2_h5mxd"]
+
+[resource]
+script = ExtResource("2_h5mxd")
+instance_limit = 3
+type = 3
+audio = ExtResource("1_gkun2")
+volume = -7.54
+pitch_scale = 1.0
+pitch_randomness = 0.2

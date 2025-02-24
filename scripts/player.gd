@@ -7,8 +7,8 @@ signal droplet_collected
 @onready var bucket: Sprite2D = $Bucket
 @onready var bucket_2: Sprite2D = $Bucket2
 @onready var water_sprite: Sprite2D = $Water
-@onready var droplet_sfx: AudioStreamPlayer2D = $dropletSFX
-@onready var walking_sfx: AudioStreamPlayer2D = $walkingSFX
+#@onready var droplet_sfx: AudioStreamPlayer2D = $dropletSFX
+#@onready var walking_sfx: AudioStreamPlayer2D = $walkingSFX
 
 @export var speed = 450.0
 @export var color := Color(1, 1, 1) :
@@ -64,41 +64,42 @@ func _ready() -> void:
 	starting_position = global_position
 
 func _process(_delta):
-	if animation_lock:
+	if animation_lock or not can_move:
 		return
 	# Movement Handling
 	direction.x = Input.get_axis("left%s" % [player_id], "right%s" % [player_id])
 	
 	if direction:
 		velocity = direction * speed
-		animated_sprite.play("walk_phase_%d_%d"% [phase, player_id])
-		walking_sfx.pitch_scale = randf_range(0.8,1.2)
-		walking_sfx.play()
-		if direction.x < 0:
-			animated_sprite.flip_h = true
-		elif direction.x > 0:
-			animated_sprite.flip_h = false
+		if can_move and randf() > 0.55:
+			AudioManager.play_sound_effect(SoundEffect.SOUND_EFFECT_TYPE.PLAYER_FOOTSTEP)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
 		animated_sprite.play("idle_phase_%d_%d"% [phase, player_id])
 
 	if can_move:
+		animated_sprite.play("walk_phase_%d_%d"% [phase, player_id])
+		if direction.x < 0:
+			animated_sprite.flip_h = true
+		elif direction.x > 0:
+			animated_sprite.flip_h = false
 		move_and_slide()
 	
-
 	# Color Handling
 	water_sprite.material.set_shader_parameter("ColorParameter", color)
-	#print(water_sprite.material.get_shader_parameter("ColorParameter"))
-	#bucket.material.set_shader_parameter("ColorParameter", color)
 
 func on_round_start(round_number):
-
 	color = Color(1, 1, 1)
 	print("round ", round_number, " start!")
 	pass
+	
 #Ketika sudah menang, player ga bisa gerak lagi
 func on_game_over():
 	can_move = false  # Menghentikan pergerakan pemain
+	if game_manager.player_set_tally[player_id] > game_manager.player_set_tally[1-player_id]:
+		animated_sprite.play("win_%d"%player_id)
+	else:
+		animated_sprite.play("lose")
 	print("Game over! Player ", player_id, " has stopped moving.")
 
 func on_round_end():
@@ -122,17 +123,11 @@ func on_set_start(set_number):
 
 func on_set_end():
 	animation_lock = true
-	if game_manager.player_set_tally[player_id] > game_manager.player_set_tally[1-player_id]:
-		animated_sprite.play("win_%d"%player_id)
-	else:
-		animated_sprite.play("lose")
 
 func _on_collection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("droplet"):
 		var droplet = area.get_parent()
 		var droplet_color: Color = droplet.color
-
-		#print("Droplet color", droplet_color)
 
 		# Set color alpha
 		color.a = 0.8
@@ -151,7 +146,7 @@ func _on_collection_area_entered(area: Area2D) -> void:
 
 		# Debug purpose
 		Globals.player_colors[(1 - player_id) if inverse_score else player_id] = color
-		droplet_sfx.play()
+		AudioManager.play_sound_effect(SoundEffect.SOUND_EFFECT_TYPE.WATER_DROPLET)
 		droplet_collected.emit()
 
 		# Free the object

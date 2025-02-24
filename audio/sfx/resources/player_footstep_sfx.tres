@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SoundEffect" load_steps=3 format=3 uid="uid://c2ymyup65qy8x"]
+
+[ext_resource type="AudioStream" uid="uid://2x8ciftt4fwc" path="res://audio/sfx/footsteps.wav" id="1_encyp"]
+[ext_resource type="Script" path="res://scripts/resources/soundEffectSettings.gd" id="2_b64bl"]
+
+[resource]
+script = ExtResource("2_b64bl")
+instance_limit = 2
+type = 2
+audio = ExtResource("1_encyp")
+volume = -2.889
+pitch_scale = 1.2
+pitch_randomness = 0.5

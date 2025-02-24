@@ -143,14 +143,12 @@ size = Vector2(174.75, 814)
 [node name="World" type="Node2D"]
 position = Vector2(294, 8.25)
 script = ExtResource("1_x7nmm")
-round_duration = 2.0
 
 [node name="EventManager" type="Node" parent="."]
 script = ExtResource("2_n21n5")
 
 [node name="NovemberRain" type="Node" parent="EventManager"]
 script = ExtResource("3_bfh5j")
-ratio = 9.0
 description = "prepare your umbrella folks, it's boutta rain hard"
 cooldown_duration = 6.0
 
@@ -171,18 +169,11 @@ cooldown_duration = 6.0
 
 [node name="Drought" type="Node" parent="EventManager"]
 script = ExtResource("7_1nary")
-reduce_by = 1.0
+reduce_by = 3.0
 description = "uh oh.. where water"
 cooldown_duration = 6.0
 
 [node name="Background" parent="." instance=ExtResource("8_y1d32")]
-
-[node name="Target Color" type="Sprite2D" parent="."]
-z_index = 4
-material = SubResource("ShaderMaterial_77wvn")
-position = Vector2(-376, 34.75)
-texture = ExtResource("2_ycvdk")
-script = ExtResource("4_0dd84")
 
 [node name="Arena" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -191,13 +182,25 @@ position = Vector2(115.75, 322.75)
 scale = Vector2(6.97266, 4.79688)
 texture = ExtResource("2_fxr3v")
 
-[node name="Cloud" type="Node2D" parent="." node_paths=PackedStringArray("event_manager", "rain_timer")]
+[node name="Cloud" type="Node2D" parent="." node_paths=PackedStringArray("point_l", "point_r", "event_manager", "rain_timer")]
 position = Vector2(-1084, -372)
 scale = Vector2(0.571027, 0.502577)
 script = ExtResource("3_w1s5b")
+point_l = NodePath("left_bound")
+point_r = NodePath("right_bound")
 height = -250.0
+min_droplet = 4
+max_droplet = 6
 event_manager = NodePath("../EventManager")
 rain_timer = NodePath("Timer")
+
+[node name="left_bound" type="Marker2D" parent="Cloud"]
+position = Vector2(577.906, 124.857)
+scale = Vector2(1, 1)
+
+[node name="right_bound" type="Marker2D" parent="Cloud"]
+position = Vector2(3505.96, 148.733)
+scale = Vector2(1, 1)
 
 [node name="Sprite" type="Sprite2D" parent="Cloud"]
 visible = false
@@ -221,6 +224,13 @@ collision_layer = 2
 player_id = 1
 
 [node name="UI" parent="." instance=ExtResource("8_8tjxo")]
+
+[node name="temp_Target Color" type="Sprite2D" parent="UI"]
+material = SubResource("ShaderMaterial_77wvn")
+position = Vector2(964, 44)
+scale = Vector2(0.565, 0.565)
+texture = ExtResource("2_ycvdk")
+script = ExtResource("4_0dd84")
 
 [node name="Tembok1" type="StaticBody2D" parent="."]
 

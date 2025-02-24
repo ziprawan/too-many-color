@@ -2943,12 +2943,15 @@ texture_over = ExtResource("8_hhggh")
 texture_progress = ExtResource("9_yy86q")
 
 [node name="temp_timer" type="RichTextLabel" parent="Scoreboard"]
-offset_left = -281.0
-offset_top = 3.0
-offset_right = -80.0
-offset_bottom = 43.0
+offset_left = -294.0
+offset_top = -11.0
+offset_right = -99.0
+offset_bottom = 52.0
+scale = Vector2(1, 0.992561)
+theme_override_colors/font_outline_color = Color(0.318513, 0.288624, 0.441014, 1)
+theme_override_constants/outline_size = 15
 theme_override_fonts/normal_font = ExtResource("13_mxfij")
-theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[center]35.00"
 scroll_active = false
@@ -3015,17 +3018,17 @@ script = ExtResource("12_3mk3j")
 
 [node name="TimerCountdown" type="Timer" parent="Timer"]
 
-[node name="TeksCountdown" type="Label" parent="Timer"]
-offset_left = 858.0
-offset_top = 220.0
-offset_right = 1075.0
-offset_bottom = 303.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("13_mxfij")
-theme_override_font_sizes/font_size = 50
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
+[node name="TeksCountdown" type="RichTextLabel" parent="Timer"]
+offset_left = 658.0
+offset_top = 389.0
+offset_right = 1297.0
+offset_bottom = 722.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.380392)
+theme_override_constants/shadow_offset_y = 15
+theme_override_fonts/normal_font = ExtResource("13_mxfij")
+theme_override_font_sizes/normal_font_size = 150
+bbcode_enabled = true
+text = "[center]3"
 
 [node name="Event_Notice" type="RichTextLabel" parent="." node_paths=PackedStringArray("animation_player", "event_description")]
 offset_top = -250.0

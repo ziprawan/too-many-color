@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SoundEffect" load_steps=3 format=3 uid="uid://bjslx3fbhw5qj"]
 
 [ext_resource type="Script" path="res://scripts/resources/soundEffectSettings.gd" id="1_degq7"]
-[ext_resource type="AudioStream" uid="uid://dhsixn12xi5y3" path="res://assets/sfx/ui-button-hover.wav" id="1_dentu"]
+[ext_resource type="AudioStream" uid="uid://dhsixn12xi5y3" path="res://audio/sfx/ui-button-hover.wav" id="1_dentu"]
 
 [resource]
 script = ExtResource("1_degq7")

@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgfxute7c13dy"]
+[gd_scene load_steps=7 format=3 uid="uid://cgfxute7c13dy"]
 
 [ext_resource type="Script" path="res://scripts/globals/audioManager.gd" id="1_4ny1x"]
 [ext_resource type="Script" path="res://scripts/resources/soundEffectSettings.gd" id="2_e1ggh"]
-[ext_resource type="Resource" uid="uid://bjslx3fbhw5qj" path="res://scripts/resources/sfx/ui_button_hover_sfx.tres" id="3_71jty"]
+[ext_resource type="Resource" uid="uid://bjslx3fbhw5qj" path="res://audio/sfx/resources/ui_button_hover_sfx.tres" id="3_71jty"]
+[ext_resource type="Resource" uid="uid://c2ymyup65qy8x" path="res://audio/sfx/resources/player_footstep_sfx.tres" id="4_hjngx"]
+[ext_resource type="Resource" uid="uid://d22iendd6nfs8" path="res://audio/sfx/resources/water_droplet_sfx.tres" id="5_piknc"]
+[ext_resource type="Resource" uid="uid://du5wt0k11dm56" path="res://audio/sfx/resources/ui_button_press.tres" id="6_r2p8h"]
 
 [node name="AudioManager" type="Node2D"]
 script = ExtResource("1_4ny1x")
-sound_effects = Array[ExtResource("2_e1ggh")]([ExtResource("3_71jty")])
+sound_effects = Array[ExtResource("2_e1ggh")]([ExtResource("3_71jty"), ExtResource("4_hjngx"), ExtResource("5_piknc"), ExtResource("6_r2p8h")])

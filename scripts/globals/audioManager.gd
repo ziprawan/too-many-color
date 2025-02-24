@@ -20,6 +20,7 @@ func play_sound_effect(type : SoundEffect.SOUND_EFFECT_TYPE):
 			new_audio_player.stream = sound_effect.audio
 			new_audio_player.volume_db = sound_effect.volume
 			new_audio_player.pitch_scale = sound_effect.pitch_scale
+			new_audio_player.pitch_scale += randf_range(-sound_effect.pitch_randomness, sound_effect.pitch_randomness)
 			new_audio_player.finished.connect(sound_effect.on_audio_finished)
 			new_audio_player.finished.connect(new_audio_player.queue_free)
 			new_audio_player.play()
