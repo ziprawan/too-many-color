@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://scripts/temp/tempTimer.gd" id="10_0otv7"]
 [ext_resource type="Texture2D" uid="uid://csupw52ccqyxk" path="res://assets/placeholder/gatau.png" id="10_n4ygh"]
 [ext_resource type="Script" path="res://scripts/tempScoreDisplay.gd" id="11_gp7xg"]
-[ext_resource type="Script" path="res://scenes/timer.gd" id="12_3mk3j"]
+[ext_resource type="Script" path="res://scripts/timer.gd" id="12_3mk3j"]
 [ext_resource type="FontFile" uid="uid://c417s7s2syvkk" path="res://assets/Fonts/Sigmar-Regular.ttf" id="13_mxfij"]
 [ext_resource type="Script" path="res://scripts/eventNotice.gd" id="16_fgxuu"]
 [ext_resource type="FontFile" uid="uid://bg2qt3ec1jxi4" path="res://assets/Fonts/Kavivanar-Regular.ttf" id="17_ifc4f"]
@@ -2756,6 +2756,45 @@ sources/3 = SubResource("TileSetAtlasSource_jyh0p")
 sources/4 = SubResource("TileSetAtlasSource_lckw1")
 sources/5 = SubResource("TileSetAtlasSource_7lwfv")
 
+[sub_resource type="Animation" id="Animation_kifif"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Event_Notice:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 440)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Event_Notice:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Event_Notice/Subtitles:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_6rpma"]
 resource_name = "display_event_notice"
 length = 4.418
@@ -2795,45 +2834,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 0.5, 2, 2, 0.5),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_kifif"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Event_Notice:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 440)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Event_Notice:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Event_Notice/Subtitles:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ldqo"]
@@ -3028,9 +3028,9 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="Event_Notice" type="RichTextLabel" parent="." node_paths=PackedStringArray("animation_player", "event_description")]
-offset_top = 440.0
+offset_top = -250.0
 offset_right = 1920.0
-offset_bottom = 696.0
+offset_bottom = 6.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.407843)
 theme_override_constants/shadow_offset_y = 10
 theme_override_fonts/normal_font = ExtResource("13_mxfij")

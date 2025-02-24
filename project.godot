@@ -20,6 +20,7 @@ config/icon="res://assets/placeholder/icon.svg"
 Globals="*res://scripts/temp/globals.gd"
 Utils="*res://scripts/globals/utils.gd"
 EventBus="*res://scripts/eventBus.gd"
+AudioManager="*res://scenes/audioManager.tscn"
 
 [display]
 

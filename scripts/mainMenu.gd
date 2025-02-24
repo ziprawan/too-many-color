@@ -31,3 +31,7 @@ func on_exit_options_menu() -> void:
 func handle_connecting_signals() -> void:
 	options_button.button_down.connect(_on_options_pressed)
 	options_menu.exit_options_menu.connect(on_exit_options_menu)
+
+
+func _on_button_mouse_entered() -> void:
+	AudioManager.play_sound_effect(SoundEffect.SOUND_EFFECT_TYPE.UI_BUTTON_HOVER)
