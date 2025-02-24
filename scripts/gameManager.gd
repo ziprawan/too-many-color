@@ -6,16 +6,11 @@ class_name GameManager
 
 var round_timer: float
 var round_is_active: bool = true
-var round_per_set := 1
+var round_per_set := 3
 var set_per_game = 5
 var current_round = 0
 var current_set = 0
 var time_start:bool = false
-#signal round_start(round_number: int)
-#signal round_end
-#signal set_start(set_number: int)
-#signal set_end
-#signal game_over
 
 # Game Variables
 var current_target_color: Color
@@ -82,7 +77,7 @@ func _process(delta: float) -> void:
 
 func is_game_over() -> bool:
 	# Check if any player has won 3 sets
-	if player_set_tally[0] >= 3 or player_set_tally[1] >= 3:
+	if player_set_tally[0] >= set_per_game or player_set_tally[1] >= set_per_game:
 		round_is_active = false
 		time_start = false
 		EventBus.game_over.emit()

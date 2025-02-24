@@ -16,6 +16,9 @@ signal toggle_inverse_blend
 # Colors that P1 catches go to P2 and vice versa
 signal uno_reverse
 
+signal dat_boi
+
+
 # Emitted when a new round starts
 signal round_start(round_number: int)
 # Emitted when a round ends

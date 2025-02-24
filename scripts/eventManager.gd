@@ -1,8 +1,6 @@
 extends Node
 class_name EventManager
 
-@export var blindness_mask: Sprite2D
-
 var active_event : Event
 var active_event_timer : float
 
@@ -31,7 +29,8 @@ func _process(delta : float):
 		active_event.update(delta)
 
 func _on_droplet_collected():
-	trigger_random_event()
+	if randf() <= 0.05:
+		trigger_random_event()
 
 func trigger_random_event():
 	if not active_event and cooldown_timer <= 0: 
