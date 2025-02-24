@@ -151,24 +151,28 @@ script = ExtResource("2_n21n5")
 [node name="NovemberRain" type="Node" parent="EventManager"]
 script = ExtResource("3_bfh5j")
 ratio = 9.0
+description = "prepare your umbrella folks, it's boutta rain hard"
 cooldown_duration = 6.0
 
 [node name="MadeInHeaven" type="Node" parent="EventManager"]
 script = ExtResource("4_8sy1i")
+description = "increased player movement"
 cooldown_duration = 6.0
 
 [node name="MadeInHell" type="Node" parent="EventManager"]
 script = ExtResource("5_lctjc")
-ratio = 2.0
+description = "reduced player movement"
 cooldown_duration = 6.0
 
 [node name="BohemianRhapsody" type="Node" parent="EventManager"]
 script = ExtResource("6_86l57")
+description = "inverts the droplets' color before blending"
 cooldown_duration = 6.0
 
 [node name="Drought" type="Node" parent="EventManager"]
 script = ExtResource("7_1nary")
-reduce_by = 3.0
+reduce_by = 1.0
+description = "uh oh.. where water"
 cooldown_duration = 6.0
 
 [node name="Background" parent="." instance=ExtResource("8_y1d32")]

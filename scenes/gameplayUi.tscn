@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=4 uid="uid://dpmi6gmao34fi"]
+[gd_scene load_steps=29 format=4 uid="uid://dpmi6gmao34fi"]
 
 [ext_resource type="Script" path="res://scripts/scoreboard.gd" id="1_3x7dg"]
 [ext_resource type="Texture2D" uid="uid://sgqlisbyoihc" path="res://assets/placeholder/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat1.png" id="1_e1wqc"]
 [ext_resource type="Texture2D" uid="uid://dujuepc1bgyp8" path="res://assets/placeholder/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat2.png" id="2_4p7u2"]
+[ext_resource type="Texture2D" uid="uid://8un1o0c1fvk4" path="res://assets/ui/ui_1.PNG" id="2_kupso"]
 [ext_resource type="Texture2D" uid="uid://b8myfbxr2j57j" path="res://assets/placeholder/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat3.png" id="3_q3n8y"]
 [ext_resource type="Texture2D" uid="uid://dimlvroo3xhqt" path="res://assets/placeholder/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat4.png" id="4_wba8x"]
 [ext_resource type="Texture2D" uid="uid://dfrgdj5do62sx" path="res://assets/placeholder/terraria_map_pack_for_swirft/mapArt/BP7/BP7_SoftPlat1.png" id="5_jqwn5"]
@@ -13,8 +14,10 @@
 [ext_resource type="Script" path="res://scripts/temp/tempTimer.gd" id="10_0otv7"]
 [ext_resource type="Texture2D" uid="uid://csupw52ccqyxk" path="res://assets/placeholder/gatau.png" id="10_n4ygh"]
 [ext_resource type="Script" path="res://scripts/tempScoreDisplay.gd" id="11_gp7xg"]
-[ext_resource type="Script" path="res://scenes/timer.gd" id="12_3mk3j"]
-[ext_resource type="FontFile" uid="uid://c417s7s2syvkk" path="res://Fonts/Sigmar-Regular.ttf" id="13_mxfij"]
+[ext_resource type="Script" path="res://scripts/timer.gd" id="12_3mk3j"]
+[ext_resource type="FontFile" uid="uid://c417s7s2syvkk" path="res://assets/Fonts/Sigmar-Regular.ttf" id="13_mxfij"]
+[ext_resource type="Script" path="res://scripts/eventNotice.gd" id="16_fgxuu"]
+[ext_resource type="FontFile" uid="uid://bg2qt3ec1jxi4" path="res://assets/Fonts/Kavivanar-Regular.ttf" id="17_ifc4f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx4wm"]
 texture = ExtResource("1_e1wqc")
@@ -2753,13 +2756,108 @@ sources/3 = SubResource("TileSetAtlasSource_jyh0p")
 sources/4 = SubResource("TileSetAtlasSource_lckw1")
 sources/5 = SubResource("TileSetAtlasSource_7lwfv")
 
+[sub_resource type="Animation" id="Animation_kifif"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Event_Notice:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 440)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Event_Notice:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Event_Notice/Subtitles:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6rpma"]
+resource_name = "display_event_notice"
+length = 4.418
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Event_Notice:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.13333, 2.8, 3.96667),
+"transitions": PackedFloat32Array(0.5, 0.5, 2, 0.5),
+"update": 0,
+"values": [Vector2(0, -150), Vector2(0, 430), Vector2(0, 450), Vector2(0, -250)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Event_Notice:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.4),
+"transitions": PackedFloat32Array(1, 0),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Event_Notice/Subtitles:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.41, 1.92, 2.77, 3.6),
+"transitions": PackedFloat32Array(1, 0.5, 2, 2, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ldqo"]
+_data = {
+"RESET": SubResource("Animation_kifif"),
+"display_event_notice": SubResource("Animation_6rpma")
+}
+
 [node name="UI" type="CanvasLayer"]
 
 [node name="Scoreboard" type="Node2D" parent="."]
 position = Vector2(960, 30)
 script = ExtResource("1_3x7dg")
 
+[node name="TextureRect" type="TextureRect" parent="Scoreboard"]
+offset_left = -436.0
+offset_top = -32.0
+offset_right = 1612.0
+offset_bottom = 1504.0
+scale = Vector2(0.43, 0.43)
+texture = ExtResource("2_kupso")
+
 [node name="TileBackground" type="TileMapLayer" parent="Scoreboard"]
+visible = false
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD+////BQADAAEAAAD/////BQADAAEAAAAAAP//BQADAAEAAAABAP//BQADAAEAAAACAP//BQADAAEAAAADAP//BQADAAEAAAAEAP//BQADAAEAAAAFAP//BQADAAEAAAAEAAAABQADAAEAAAAFAAAABQADAAEAAAAGAAAABQADAAEAAAAHAAAABQADAAEAAAAIAAAABQADAAEAAAAJAAAABQADAAEAAAAIAP//BQADAAEAAAAJAP//BQADAAEAAAAGAP//BQADAAEAAAAHAP//BQADAAEAAAD6////BQADAAEAAAD7////BQADAAEAAAD8////BQADAAEAAAD9////BQADAAEAAAD5////BQADAAEAAAADAAAABQADAAEAAAAKAAAABQADAAEAAAACAAAABQADAAEAAAABAAAABQADAAEAAAAAAAAABQADAAEAAAD//wAABQADAAEAAAD+/wAABQADAAEAAAD9/wAABQADAAEAAAD8/wAABQADAAEAAAD7/wAABQADAAEAAAD6/wAABQADAAEAAAD5/wAABQADAAEAAAD4////BQADAAEAAAD4/wAABQADAAEAAAD3/wAABQADAAEAAAD2/wAABQADAAEAAAD4/wEABQADAAEAAAD5/wEABQADAAEAAAD6/wEABQADAAEAAAD7/wEABQADAAEAAAD8/wEABQADAAEAAAD9/wEABQADAAEAAAD+/wEABQADAAEAAAD//wEABQADAAEAAAAAAAEABQADAAEAAAABAAEABQADAAEAAAAFAAEABQADAAEAAAAGAAEABQADAAEAAAAHAAEABQADAAEAAAAIAAEABQADAAEAAAAJAAEABQADAAEAAAACAAEABQADAAEAAAADAAEABQADAAEAAAAEAAEABQADAAEAAAD1/wAABQADAAEAAAD0/wAABQADAAEAAAD2/wEABQADAAEAAAD3/wEABQADAAEAAAD2////BQADAAEAAAD3////BQADAAEAAAA=")
 tile_set = SubResource("TileSet_us81o")
@@ -2768,10 +2866,10 @@ tile_set = SubResource("TileSet_us81o")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -150.0
-offset_top = -9.0
-offset_right = -70.0
-offset_bottom = 18.0
+offset_left = -188.0
+offset_top = 144.0
+offset_right = -108.0
+offset_bottom = 171.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("13_mxfij")
@@ -2789,10 +2887,10 @@ text = "0"
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = -5.0
-offset_right = 78.0
-offset_bottom = 18.0
+offset_left = 122.0
+offset_top = 144.0
+offset_right = 203.0
+offset_bottom = 171.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("13_mxfij")
@@ -2808,51 +2906,52 @@ text = "0"
 
 [node name="ScoreBar1" type="TextureProgressBar" parent="Scoreboard"]
 z_index = 3
-offset_left = -511.0
-offset_top = -4.0
-offset_right = 205.0
-offset_bottom = 138.0
+offset_left = -300.0
+offset_top = 85.0
+offset_right = 416.0
+offset_bottom = 227.0
 scale = Vector2(0.366844, 0.131813)
 texture_under = ExtResource("9_p7uan")
 texture_progress = ExtResource("10_n4ygh")
 
 [node name="ScoreBar2" type="TextureProgressBar" parent="Scoreboard"]
 z_index = 3
-offset_left = 196.0
-offset_top = -3.0
-offset_right = 912.0
-offset_bottom = 139.0
+offset_left = 57.0
+offset_top = 85.0
+offset_right = 773.0
+offset_bottom = 227.0
 scale = Vector2(0.366844, 0.131813)
 texture_under = ExtResource("9_p7uan")
 texture_progress = ExtResource("10_n4ygh")
 
 [node name="PlayerSet1" type="TextureProgressBar" parent="Scoreboard"]
-offset_left = -148.0
-offset_top = 41.0
-offset_right = -147.0
-offset_bottom = 42.0
+offset_left = -173.0
+offset_top = 114.0
+offset_right = 62.0
+offset_bottom = 202.0
 scale = Vector2(0.256607, 0.289214)
 texture_over = ExtResource("8_hhggh")
 texture_progress = ExtResource("9_yy86q")
 
 [node name="PlayerSet2" type="TextureProgressBar" parent="Scoreboard"]
-offset_left = 64.0
-offset_top = 41.0
-offset_right = 299.0
-offset_bottom = 129.0
+offset_left = 139.0
+offset_top = 114.0
+offset_right = 374.0
+offset_bottom = 202.0
 scale = Vector2(0.256607, 0.289214)
 texture_over = ExtResource("8_hhggh")
 texture_progress = ExtResource("9_yy86q")
 
 [node name="temp_timer" type="RichTextLabel" parent="Scoreboard"]
-offset_left = -98.0
-offset_top = 31.0
-offset_right = 103.0
-offset_bottom = 71.0
+offset_left = -281.0
+offset_top = 3.0
+offset_right = -80.0
+offset_bottom = 43.0
 theme_override_fonts/normal_font = ExtResource("13_mxfij")
 theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "[center]35.00"
+scroll_active = false
 script = ExtResource("10_0otv7")
 
 [node name="temp_scores" type="VBoxContainer" parent="." node_paths=PackedStringArray("p1_score_label", "p2_score_label", "p1_set_score", "p2_set_score", "p1_set_tally", "p2_set_tally", "target_color_label")]
@@ -2917,13 +3016,49 @@ script = ExtResource("12_3mk3j")
 [node name="TimerCountdown" type="Timer" parent="Timer"]
 
 [node name="TeksCountdown" type="Label" parent="Timer"]
-offset_left = 842.0
-offset_top = 117.0
-offset_right = 1059.0
-offset_bottom = 200.0
+offset_left = 858.0
+offset_top = 220.0
+offset_right = 1075.0
+offset_bottom = 303.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("13_mxfij")
 theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="Event_Notice" type="RichTextLabel" parent="." node_paths=PackedStringArray("animation_player", "event_description")]
+offset_top = -250.0
+offset_right = 1920.0
+offset_bottom = 6.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.407843)
+theme_override_constants/shadow_offset_y = 10
+theme_override_fonts/normal_font = ExtResource("13_mxfij")
+theme_override_font_sizes/normal_font_size = 61
+bbcode_enabled = true
+text = "[wave amp=25][center]NOVEMBER RAIN"
+fit_content = true
+script = ExtResource("16_fgxuu")
+animation_player = NodePath("AnimationPlayer")
+event_description = NodePath("Subtitles")
+
+[node name="Subtitles" type="RichTextLabel" parent="Event_Notice"]
+layout_mode = 0
+offset_top = 86.0
+offset_right = 1919.0
+offset_bottom = 155.0
+pivot_offset = Vector2(959.535, 32.405)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.635294)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/line_separation = -35
+theme_override_fonts/normal_font = ExtResource("17_ifc4f")
+theme_override_font_sizes/normal_font_size = 31
+bbcode_enabled = true
+text = "[center]more droplets spawn from the sky"
+fit_content = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Event_Notice"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_5ldqo")
+}

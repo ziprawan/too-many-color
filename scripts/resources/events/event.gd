@@ -1,8 +1,10 @@
 extends Node
 class_name Event
 
+@export_multiline var description : String
 @export var duration : float = 5
 @export var cooldown_duration : float = 2.5
+@export var bbcode_prefix : String = "[wave amp=25][center]"
 
 func on_triggered():
 	pass

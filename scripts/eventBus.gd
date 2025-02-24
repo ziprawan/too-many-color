@@ -28,6 +28,8 @@ signal set_end
 signal game_over
 # Buat countdown
 signal countdown_over
+# Broadcast what event has started
+signal event_started(event : Event)
 
 # Emit to change a background group's color
 signal change_background_color(group : int, color : Color)

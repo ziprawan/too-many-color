@@ -10,7 +10,7 @@ signal droplet_collected
 @onready var droplet_sfx: AudioStreamPlayer2D = $dropletSFX
 @onready var walking_sfx: AudioStreamPlayer2D = $walkingSFX
 
-@export var speed = 500.0
+@export var speed = 450.0
 @export var color := Color(1, 1, 1) :
 	set(value):
 		game_manager.player_colors[player_id] = value

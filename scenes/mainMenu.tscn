@@ -222,8 +222,11 @@ flat = true
 visible = false
 layout_mode = 1
 
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/multiplayerbutton" to="." method="_on_multiplayerbutton_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/StartButton" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/OptionsButton" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/ExitButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="VBoxContainer2/OptionsButton" to="." method="_on_options_pressed"]

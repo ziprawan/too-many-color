@@ -33,6 +33,8 @@ func handle_connecting_signals() -> void:
 	exit_button.pressed.connect(_on_exit_pressed)
 	options_menu.exit_options_menu.connect(on_exit_options_menu)
 
-
 func _on_multiplayerbutton_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/world.tscn")
+
+func _on_button_mouse_entered() -> void:
+	AudioManager.play_sound_effect(SoundEffect.SOUND_EFFECT_TYPE.UI_BUTTON_HOVER)
