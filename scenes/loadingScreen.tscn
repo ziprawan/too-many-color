@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmoxs1n1oj2y6"]
 
-[ext_resource type="FontFile" uid="uid://c417s7s2syvkk" path="res://assets/Fonts/Sigmar-Regular.ttf" id="1_0ylmt"]
+[ext_resource type="FontFile" uid="uid://c417s7s2syvkk" path="res://assets/fonts/Sigmar-Regular.ttf" id="1_0ylmt"]
 [ext_resource type="Script" path="res://scripts/loading_screen.gd" id="1_8tt53"]
 
 [node name="LoadingScreen" type="Node2D"]

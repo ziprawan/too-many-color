@@ -1,0 +1,83 @@
+[gd_scene load_steps=14 format=3 uid="uid://4suiy3k6ebua"]
+
+[ext_resource type="Script" path="res://scripts/prologue_player.gd" id="1_cgnlm"]
+[ext_resource type="VideoStream" path="res://assets/video/prologue_reencode.ogv" id="2_tuicy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x82t4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q16mo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mr5n3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_adxf7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b2od1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_di3wy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fy01o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_67bym"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h5b3w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66anf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_30u34"]
+
+[node name="ProloguePlayer" type="Control" node_paths=PackedStringArray("video_player", "skip_label", "loading_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cgnlm")
+video_player = NodePath("VideoStreamPlayer")
+skip_label = NodePath("SkipLabel")
+loading_label = NodePath("LoadPercent")
+wait_video = 10.0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("2_tuicy")
+
+[node name="LoadPercent" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 228.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.588235)
+theme_override_font_sizes/font_size = 30
+text = "Loading scene... (0%)"
+
+[node name="SkipLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1796.0
+offset_top = 6.0
+offset_right = 2015.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.588235)
+theme_override_font_sizes/font_size = 30
+text = "Skip..."
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x82t4")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_q16mo")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mr5n3")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_adxf7")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2od1")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_di3wy")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_fy01o")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_67bym")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_h5b3w")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_66anf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_30u34")
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

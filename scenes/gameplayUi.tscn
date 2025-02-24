@@ -15,9 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://csupw52ccqyxk" path="res://assets/placeholder/gatau.png" id="10_n4ygh"]
 [ext_resource type="Script" path="res://scripts/tempScoreDisplay.gd" id="11_gp7xg"]
 [ext_resource type="Script" path="res://scripts/timer.gd" id="12_3mk3j"]
-[ext_resource type="FontFile" uid="uid://c417s7s2syvkk" path="res://assets/Fonts/Sigmar-Regular.ttf" id="13_mxfij"]
+[ext_resource type="FontFile" uid="uid://c417s7s2syvkk" path="res://assets/fonts/Sigmar-Regular.ttf" id="13_mxfij"]
 [ext_resource type="Script" path="res://scripts/eventNotice.gd" id="16_fgxuu"]
-[ext_resource type="FontFile" uid="uid://bg2qt3ec1jxi4" path="res://assets/Fonts/Kavivanar-Regular.ttf" id="17_ifc4f"]
+[ext_resource type="FontFile" uid="uid://bg2qt3ec1jxi4" path="res://assets/fonts/Kavivanar-Regular.ttf" id="17_ifc4f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx4wm"]
 texture = ExtResource("1_e1wqc")
