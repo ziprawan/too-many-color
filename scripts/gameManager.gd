@@ -81,7 +81,7 @@ func _process(delta: float) -> void:
 		end_round()
 
 func is_game_over() -> bool:
-	# Check if any player has won 4 sets
+	# Check if any player has won 3 sets
 	if player_set_tally[0] >= 3 or player_set_tally[1] >= 3:
 		round_is_active = false
 		time_start = false
