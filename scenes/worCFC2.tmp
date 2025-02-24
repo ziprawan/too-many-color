@@ -15,8 +15,8 @@
 [ext_resource type="Script" path="res://scripts/resources/events/uno_reverse.gd" id="8_8qyn4"]
 [ext_resource type="PackedScene" uid="uid://dpmi6gmao34fi" path="res://scenes/gameplayUi.tscn" id="8_8tjxo"]
 [ext_resource type="PackedScene" uid="uid://counwxdujdcu8" path="res://scenes/background.tscn" id="8_y1d32"]
-[ext_resource type="Script" path="res://scripts/resources/events/elNino.gd" id="9_cabqs"]
-[ext_resource type="Script" path="res://scripts/resources/events/cMoon.gd" id="10_3jrcn"]
+[ext_resource type="Script" path="res://scripts/resources/events/el_nino.gd" id="9_cabqs"]
+[ext_resource type="Script" path="res://scripts/resources/events/c_moon.gd" id="10_3jrcn"]
 [ext_resource type="Script" path="res://scripts/resources/events/darkness.gd" id="11_llrnj"]
 [ext_resource type="Texture2D" uid="uid://bwvia6kiqgr3f" path="res://assets/blindness.png" id="12_m5m6y"]
 
@@ -196,11 +196,9 @@ cooldown_duration = 6.0
 [node name="Darkness" type="Node" parent="EventManager"]
 script = ExtResource("11_llrnj")
 description = "It draws near..."
-cooldown_duration = 6.0
 
 [node name="Blindness" type="Sprite2D" parent="EventManager"]
-visible = false
-position = Vector2(555, 793)
+position = Vector2(475, 830)
 rotation = 3.14159
 scale = Vector2(4, 4)
 texture = ExtResource("12_m5m6y")
@@ -233,6 +231,7 @@ autostart = true
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(110, 275.75)
+zoom = Vector2(0.5, 0.5)
 
 [node name="Player1" parent="." instance=ExtResource("2_5t31v")]
 position = Vector2(-502, 606.75)

@@ -53,6 +53,7 @@ func _ready() -> void:
 	EventBus.set_start.connect(on_set_start)
 	EventBus.set_end.connect(on_set_end)
 	EventBus.game_over.connect(on_game_over)
+	EventBus.uno_reverse.connect(on_uno_reverse)
 	# In-game Events shenanigans
 	EventBus.change_player_move_speed.connect(change_move_speed)
 	EventBus.toggle_inverse_blend.connect(toggle_inverse_blend)
@@ -99,7 +100,7 @@ func on_round_start(round_number):
 #Ketika sudah menang, player ga bisa gerak lagi
 func on_game_over():
 	can_move = false  # Menghentikan pergerakan pemain
-	print("Game over! Player ", player_id, " has stopped moving.")
+	#print("Game over! Player ", player_id, " has stopped moving.")
 
 func on_round_end():
 	print("round end!")
@@ -131,7 +132,7 @@ func _on_collection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("droplet"):
 		var droplet = area.get_parent()
 		var droplet_color: Color = droplet.color
-
+		
 		#print("Droplet color", droplet_color)
 
 		# Set color alpha
@@ -152,13 +153,22 @@ func _on_collection_area_entered(area: Area2D) -> void:
 		# Debug purpose
 		Globals.player_colors[(1 - player_id) if inverse_score else player_id] = color
 		droplet_sfx.play()
-		droplet_collected.emit()
-
+		
+		
+		if droplet.scale == Vector2(2.0,2.0):
+			print("Score reset!")
+			game_manager.player_scores[0] = 0
+			game_manager.player_scores[1] = 0
+		else:
+			droplet_collected.emit()
 		# Free the object
 		droplet.queue_free()
 
 func change_move_speed(ratio : float):
 	speed *= ratio
+
+func on_uno_reverse():
+	inverse_score = not inverse_score
 
 func unfreeze_player_movement():
 	pass

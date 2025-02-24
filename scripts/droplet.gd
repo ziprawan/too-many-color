@@ -9,6 +9,8 @@ class_name Droplet
 func _ready():
 	sprite.material = sprite.material.duplicate()
 	color = Color.from_hsv(randf_range(0, 1), randf_range(0.3, 0.6), randf_range(0.6, 1), 1) # Pastel
+	if self.scale == Vector2(2.0,2.0):
+		color = Color.from_hsv(0,0,0, 1)
 	#color = Color.from_hsv(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1), 1) # Full Range
 	sprite.material.set_shader_parameter("ColorParameter", color)
 	global_position = spawn_position
