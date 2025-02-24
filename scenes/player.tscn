@@ -480,7 +480,8 @@ speed = 950.0
 position = Vector2(2.98023e-08, 15)
 scale = Vector2(0.0802002, 0.0840073)
 sprite_frames = SubResource("SpriteFrames_t80m8")
-animation = &"idle_phase_1_0"
+animation = &"lose"
+frame_progress = 0.553975
 
 [node name="Water" type="Sprite2D" parent="."]
 material = ExtResource("2_0c2mb")

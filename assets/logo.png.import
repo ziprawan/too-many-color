@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4ase7f6lf6bb"
-path="res://.godot/imported/12_blue overlay.png-8be3917deb30604224516282c86aedf8.ctex"
+uid="uid://b467puoufdaqg"
+path="res://.godot/imported/logo.png-e2220799298e3631eb0e245316e0501a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background/game_background/12_blue overlay.png"
-dest_files=["res://.godot/imported/12_blue overlay.png-8be3917deb30604224516282c86aedf8.ctex"]
+source_file="res://assets/logo.png"
+dest_files=["res://.godot/imported/logo.png-e2220799298e3631eb0e245316e0501a.ctex"]
 
 [params]
 

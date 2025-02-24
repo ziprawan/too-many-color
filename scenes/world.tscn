@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b1tnns8p63rtn"]
+[gd_scene load_steps=25 format=3 uid="uid://b1tnns8p63rtn"]
 
 [ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_x7nmm"]
 [ext_resource type="PackedScene" uid="uid://c6uwi7if3vw7l" path="res://scenes/player.tscn" id="2_5t31v"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/resources/events/drought.gd" id="7_1nary"]
 [ext_resource type="PackedScene" uid="uid://dpmi6gmao34fi" path="res://scenes/gameplayUi.tscn" id="8_8tjxo"]
 [ext_resource type="PackedScene" uid="uid://counwxdujdcu8" path="res://scenes/background.tscn" id="8_y1d32"]
+[ext_resource type="PackedScene" uid="uid://bgdkknajvo8b1" path="res://scenes/gameOverScreen.tscn" id="14_hh3sa"]
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_62kpd"]
 parameter_name = "ColorParameter"
@@ -174,6 +175,7 @@ description = "uh oh.. where water"
 cooldown_duration = 6.0
 
 [node name="Background" parent="." instance=ExtResource("8_y1d32")]
+position = Vector2(-848, -265.25)
 
 [node name="Arena" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -196,11 +198,9 @@ rain_timer = NodePath("Timer")
 
 [node name="left_bound" type="Marker2D" parent="Cloud"]
 position = Vector2(577.906, 124.857)
-scale = Vector2(1, 1)
 
 [node name="right_bound" type="Marker2D" parent="Cloud"]
 position = Vector2(3505.96, 148.733)
-scale = Vector2(1, 1)
 
 [node name="Sprite" type="Sprite2D" parent="Cloud"]
 visible = false
@@ -225,10 +225,19 @@ player_id = 1
 
 [node name="UI" parent="." instance=ExtResource("8_8tjxo")]
 
+[node name="GameOverScreen" parent="UI" instance=ExtResource("14_hh3sa")]
+visible = false
+z_index = 7
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 2.0
+offset_bottom = 2.0
+
 [node name="temp_Target Color" type="Sprite2D" parent="UI"]
+z_index = 8
 material = SubResource("ShaderMaterial_77wvn")
-position = Vector2(964, 44)
-scale = Vector2(0.565, 0.565)
+position = Vector2(964, 21)
+scale = Vector2(0.933, 0.933)
 texture = ExtResource("2_ycvdk")
 script = ExtResource("4_0dd84")
 
@@ -245,3 +254,5 @@ position = Vector2(1158.63, 399.75)
 shape = SubResource("RectangleShape2D_onlhw")
 
 [connection signal="timeout" from="Cloud/Timer" to="Cloud" method="_on_timer_timeout"]
+
+[editable path="UI"]

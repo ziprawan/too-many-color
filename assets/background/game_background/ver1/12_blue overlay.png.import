@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0we5w77g7yf5"
-path="res://.godot/imported/3_middle tree.png-2acc807bfa313bf856cf2816e6d6e955.ctex"
+uid="uid://b4ase7f6lf6bb"
+path="res://.godot/imported/12_blue overlay.png-88bc0fb57d28e93208ab9db2b42a7e46.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background/game_background/3_middle tree.png"
-dest_files=["res://.godot/imported/3_middle tree.png-2acc807bfa313bf856cf2816e6d6e955.ctex"]
+source_file="res://assets/background/game_background/ver1/12_blue overlay.png"
+dest_files=["res://.godot/imported/12_blue overlay.png-88bc0fb57d28e93208ab9db2b42a7e46.ctex"]
 
 [params]
 

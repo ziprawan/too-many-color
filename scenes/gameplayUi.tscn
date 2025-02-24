@@ -1,9 +1,9 @@
-[gd_scene load_steps=29 format=4 uid="uid://dpmi6gmao34fi"]
+[gd_scene load_steps=32 format=4 uid="uid://dpmi6gmao34fi"]
 
 [ext_resource type="Script" path="res://scripts/scoreboard.gd" id="1_3x7dg"]
 [ext_resource type="Texture2D" uid="uid://sgqlisbyoihc" path="res://assets/placeholder/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat1.png" id="1_e1wqc"]
 [ext_resource type="Texture2D" uid="uid://dujuepc1bgyp8" path="res://assets/placeholder/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat2.png" id="2_4p7u2"]
-[ext_resource type="Texture2D" uid="uid://8un1o0c1fvk4" path="res://assets/ui/ui_1.PNG" id="2_kupso"]
+[ext_resource type="Texture2D" uid="uid://buw87aw0qumfp" path="res://assets/ui/ui_2.PNG" id="2_x36lj"]
 [ext_resource type="Texture2D" uid="uid://b8myfbxr2j57j" path="res://assets/placeholder/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat3.png" id="3_q3n8y"]
 [ext_resource type="Texture2D" uid="uid://dimlvroo3xhqt" path="res://assets/placeholder/terraria_map_pack_for_swirft/mapArt/BP7/BP7_MainPlat4.png" id="4_wba8x"]
 [ext_resource type="Texture2D" uid="uid://dfrgdj5do62sx" path="res://assets/placeholder/terraria_map_pack_for_swirft/mapArt/BP7/BP7_SoftPlat1.png" id="5_jqwn5"]
@@ -16,7 +16,10 @@
 [ext_resource type="Script" path="res://scripts/tempScoreDisplay.gd" id="11_gp7xg"]
 [ext_resource type="Script" path="res://scripts/timer.gd" id="12_3mk3j"]
 [ext_resource type="FontFile" uid="uid://c417s7s2syvkk" path="res://assets/Fonts/Sigmar-Regular.ttf" id="13_mxfij"]
+[ext_resource type="Texture2D" uid="uid://d0wtg8qj30jvn" path="res://assets/ui/under.PNG" id="15_v24eb"]
+[ext_resource type="Texture2D" uid="uid://bfm6eucxvfsyo" path="res://assets/ui/over.PNG" id="16_bhjyk"]
 [ext_resource type="Script" path="res://scripts/eventNotice.gd" id="16_fgxuu"]
+[ext_resource type="Texture2D" uid="uid://d3fdon2q367ap" path="res://assets/ui/progress.PNG" id="17_5pfvw"]
 [ext_resource type="FontFile" uid="uid://bg2qt3ec1jxi4" path="res://assets/Fonts/Kavivanar-Regular.ttf" id="17_ifc4f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx4wm"]
@@ -2830,10 +2833,10 @@ tracks/2/path = NodePath("Event_Notice/Subtitles:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.41, 1.92, 2.77, 3.6),
-"transitions": PackedFloat32Array(1, 0.5, 2, 2, 0.5),
+"times": PackedFloat32Array(0, 1.41, 1.92),
+"transitions": PackedFloat32Array(1, 0.5, 2),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ldqo"]
@@ -2844,17 +2847,21 @@ _data = {
 
 [node name="UI" type="CanvasLayer"]
 
-[node name="Scoreboard" type="Node2D" parent="."]
+[node name="Scoreboard" type="Node2D" parent="." node_paths=PackedStringArray("p1_score", "p2_score", "p1_slider", "p2_slider")]
 position = Vector2(960, 30)
 script = ExtResource("1_3x7dg")
+p1_score = NodePath("p1_score")
+p2_score = NodePath("p2_score")
+p1_slider = NodePath("player_score_bar_1")
+p2_slider = NodePath("player_score_bar_2")
 
-[node name="TextureRect" type="TextureRect" parent="Scoreboard"]
+[node name="base" type="TextureRect" parent="Scoreboard"]
 offset_left = -436.0
 offset_top = -32.0
 offset_right = 1612.0
 offset_bottom = 1504.0
 scale = Vector2(0.43, 0.43)
-texture = ExtResource("2_kupso")
+texture = ExtResource("2_x36lj")
 
 [node name="TileBackground" type="TileMapLayer" parent="Scoreboard"]
 visible = false
@@ -2905,6 +2912,7 @@ theme_override_fonts/font = ExtResource("13_mxfij")
 text = "0"
 
 [node name="ScoreBar1" type="TextureProgressBar" parent="Scoreboard"]
+visible = false
 z_index = 3
 offset_left = -300.0
 offset_top = 85.0
@@ -2915,6 +2923,7 @@ texture_under = ExtResource("9_p7uan")
 texture_progress = ExtResource("10_n4ygh")
 
 [node name="ScoreBar2" type="TextureProgressBar" parent="Scoreboard"]
+visible = false
 z_index = 3
 offset_left = 57.0
 offset_top = 85.0
@@ -2943,12 +2952,12 @@ texture_over = ExtResource("8_hhggh")
 texture_progress = ExtResource("9_yy86q")
 
 [node name="temp_timer" type="RichTextLabel" parent="Scoreboard"]
-offset_left = -294.0
-offset_top = -11.0
-offset_right = -99.0
-offset_bottom = 52.0
+offset_left = -291.0
+offset_top = -3.0
+offset_right = -96.0
+offset_bottom = 60.0
 scale = Vector2(1, 0.992561)
-theme_override_colors/font_outline_color = Color(0.318513, 0.288624, 0.441014, 1)
+theme_override_colors/font_outline_color = Color(0.407843, 0.368627, 0.411765, 1)
 theme_override_constants/outline_size = 15
 theme_override_fonts/normal_font = ExtResource("13_mxfij")
 theme_override_font_sizes/normal_font_size = 36
@@ -2956,6 +2965,58 @@ bbcode_enabled = true
 text = "[center]35.00"
 scroll_active = false
 script = ExtResource("10_0otv7")
+
+[node name="player_score_bar_1" type="TextureProgressBar" parent="Scoreboard"]
+offset_left = 457.0
+offset_top = -31.0
+offset_right = 2505.0
+offset_bottom = 1505.0
+scale = Vector2(0.245, 0.245)
+max_value = 1000.0
+value = 35.0
+texture_under = ExtResource("15_v24eb")
+texture_over = ExtResource("16_bhjyk")
+texture_progress = ExtResource("17_5pfvw")
+
+[node name="p1_score" type="RichTextLabel" parent="Scoreboard"]
+offset_left = -953.0
+offset_top = -21.0
+offset_right = -668.0
+offset_bottom = 42.0
+scale = Vector2(1, 0.992561)
+theme_override_colors/font_outline_color = Color(0.407843, 0.368627, 0.411765, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/normal_font = ExtResource("13_mxfij")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center]35.00"
+scroll_active = false
+
+[node name="player_score_bar_2" type="TextureProgressBar" parent="Scoreboard"]
+offset_left = -458.0
+offset_top = -31.0
+offset_right = 1590.0
+offset_bottom = 1505.0
+scale = Vector2(-0.245, 0.245)
+max_value = 1000.0
+value = 52.0
+texture_under = ExtResource("15_v24eb")
+texture_over = ExtResource("16_bhjyk")
+texture_progress = ExtResource("17_5pfvw")
+
+[node name="p2_score" type="RichTextLabel" parent="Scoreboard"]
+offset_left = 691.0
+offset_top = -21.0
+offset_right = 968.0
+offset_bottom = 42.0
+scale = Vector2(1, 0.992561)
+theme_override_colors/font_outline_color = Color(0.407843, 0.368627, 0.411765, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/normal_font = ExtResource("13_mxfij")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center]35.00"
+scroll_active = false
 
 [node name="temp_scores" type="VBoxContainer" parent="." node_paths=PackedStringArray("p1_score_label", "p2_score_label", "p1_set_score", "p2_set_score", "p1_set_tally", "p2_set_tally", "target_color_label")]
 offset_left = 7.0
@@ -2978,6 +3039,7 @@ theme_override_font_sizes/normal_font_size = 24
 text = "Target: "
 
 [node name="P1_score" type="RichTextLabel" parent="temp_scores"]
+visible = false
 custom_minimum_size = Vector2(0, 43.185)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 24
@@ -3031,9 +3093,9 @@ bbcode_enabled = true
 text = "[center]3"
 
 [node name="Event_Notice" type="RichTextLabel" parent="." node_paths=PackedStringArray("animation_player", "event_description")]
-offset_top = -250.0
+offset_top = -150.0
 offset_right = 1920.0
-offset_bottom = 6.0
+offset_bottom = 106.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.407843)
 theme_override_constants/shadow_offset_y = 10
 theme_override_fonts/normal_font = ExtResource("13_mxfij")

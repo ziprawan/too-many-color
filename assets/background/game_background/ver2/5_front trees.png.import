@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r1rqf5pxhvg0"
-path="res://.godot/imported/13_filter overlay.png-4998ade93e9bb8e3ac007b4a41d6550f.ctex"
+uid="uid://bsuecutd7fv6i"
+path="res://.godot/imported/5_front trees.png-56eb7f9bf670c26f24ba48b4e08580ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background/game_background/13_filter overlay.png"
-dest_files=["res://.godot/imported/13_filter overlay.png-4998ade93e9bb8e3ac007b4a41d6550f.ctex"]
+source_file="res://assets/background/game_background/ver2/5_front trees.png"
+dest_files=["res://.godot/imported/5_front trees.png-56eb7f9bf670c26f24ba48b4e08580ef.ctex"]
 
 [params]
 

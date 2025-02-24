@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu0mcpwf23e3i"
-path="res://.godot/imported/6_bushes.png-9c321a687b4cb8b87508d5d85f837f0b.ctex"
+uid="uid://bkt2gyio3ly7x"
+path="res://.godot/imported/start game.png-a31436580da8d46a00166812a1736a5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background/game_background/6_bushes.png"
-dest_files=["res://.godot/imported/6_bushes.png-9c321a687b4cb8b87508d5d85f837f0b.ctex"]
+source_file="res://assets/mainMenu/start game.png"
+dest_files=["res://.godot/imported/start game.png-a31436580da8d46a00166812a1736a5b.ctex"]
 
 [params]
 

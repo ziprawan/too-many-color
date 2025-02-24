@@ -20,6 +20,7 @@ func start_countdown():
 		await get_tree().create_timer(1.0).timeout
 		
 		# Kurangi waktu
+		AudioManager.play_sound_effect(SoundEffect.SOUND_EFFECT_TYPE.UI_BUTTON_PRESS)
 		time_left -= 1
 	
 	# Setelah countdown selesai, update teks menjadi "GO!"

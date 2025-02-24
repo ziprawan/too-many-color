@@ -145,7 +145,7 @@ func _on_collection_area_entered(area: Area2D) -> void:
 		color = color.blend(droplet_color)
 
 		# Debug purpose
-		Globals.player_colors[(1 - player_id) if inverse_score else player_id] = color
+		#Globals.player_colors[(1 - player_id) if inverse_score else player_id] = color
 		AudioManager.play_sound_effect(SoundEffect.SOUND_EFFECT_TYPE.WATER_DROPLET)
 		droplet_collected.emit()
 

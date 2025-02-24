@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w73a54sm8w0d"
-path="res://.godot/imported/10_light streaks 2.png-27e45c32c0950ed48eed408173001cfc.ctex"
+uid="uid://cu0mcpwf23e3i"
+path="res://.godot/imported/6_bushes.png-899d316452502c7cc902a380491587e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background/game_background/10_light streaks 2.png"
-dest_files=["res://.godot/imported/10_light streaks 2.png-27e45c32c0950ed48eed408173001cfc.ctex"]
+source_file="res://assets/background/game_background/ver1/6_bushes.png"
+dest_files=["res://.godot/imported/6_bushes.png-899d316452502c7cc902a380491587e8.ctex"]
 
 [params]
 

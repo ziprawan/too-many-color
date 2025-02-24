@@ -1,13 +1,21 @@
 extends Node2D
 
 var sound_effects_dict : Dictionary = {}
-@export var sound_effects : Array[SoundEffect]
 
+@export var sound_effects : Array[SoundEffect]
+@export var bgm_player : AudioStreamPlayer
+var bgm_playback : AudioStreamPlaybackInteractive
 
 func _ready() -> void:
+	print(get_tree_string_pretty())
+	bgm_player.play()
+	bgm_playback = bgm_player.get_stream_playback()
+	print(bgm_player)
 	for sound_effect in sound_effects:
 		sound_effects_dict[sound_effect.type] = sound_effect
-	pass
+
+func switch_bgm_to(name : String):
+	bgm_playback.switch_to_clip_by_name(name)
 
 func play_sound_effect(type : SoundEffect.SOUND_EFFECT_TYPE):
 	if sound_effects_dict.has(type):

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx154lnw41h5s"
-path="res://.godot/imported/4_front tree.png-d3fd061e9aa1e7108fbc9742fe060b17.ctex"
+uid="uid://w73a54sm8w0d"
+path="res://.godot/imported/10_light streaks 2.png-e00d0a77a5f002991f3c2551482306e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background/game_background/4_front tree.png"
-dest_files=["res://.godot/imported/4_front tree.png-d3fd061e9aa1e7108fbc9742fe060b17.ctex"]
+source_file="res://assets/background/game_background/ver1/10_light streaks 2.png"
+dest_files=["res://.godot/imported/10_light streaks 2.png-e00d0a77a5f002991f3c2551482306e7.ctex"]
 
 [params]
 

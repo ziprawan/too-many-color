@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgfxute7c13dy"]
+[gd_scene load_steps=13 format=3 uid="uid://cgfxute7c13dy"]
 
 [ext_resource type="Script" path="res://scripts/globals/audioManager.gd" id="1_4ny1x"]
 [ext_resource type="Script" path="res://scripts/resources/soundEffectSettings.gd" id="2_e1ggh"]
@@ -6,7 +6,68 @@
 [ext_resource type="Resource" uid="uid://c2ymyup65qy8x" path="res://audio/sfx/resources/player_footstep_sfx.tres" id="4_hjngx"]
 [ext_resource type="Resource" uid="uid://d22iendd6nfs8" path="res://audio/sfx/resources/water_droplet_sfx.tres" id="5_piknc"]
 [ext_resource type="Resource" uid="uid://du5wt0k11dm56" path="res://audio/sfx/resources/ui_button_press.tres" id="6_r2p8h"]
+[ext_resource type="AudioStream" uid="uid://cu2tvp4mwj63" path="res://audio/bgm/songloop_0_mainmenu.mp3" id="7_dw2j7"]
+[ext_resource type="AudioStream" uid="uid://cw2bhju4cjenu" path="res://audio/bgm/songloop_1_firststage.mp3" id="8_nm4if"]
+[ext_resource type="AudioStream" uid="uid://xmfy5o3i5aff" path="res://audio/bgm/songloop_2_secondstage.mp3" id="9_8uncb"]
+[ext_resource type="AudioStream" uid="uid://dnytkh3vu5nkf" path="res://audio/bgm/songloop_3_thirdstage.mp3" id="10_afpn1"]
+[ext_resource type="AudioStream" uid="uid://5nfv81aauec8" path="res://audio/bgm/songloop_4_win_or_mainmenu_afterwin.mp3" id="11_8k71r"]
 
-[node name="AudioManager" type="Node2D"]
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_gte38"]
+clip_count = 5
+clip_0/name = &"Stage_0"
+clip_0/stream = ExtResource("7_dw2j7")
+clip_0/auto_advance = 0
+clip_1/name = &"Stage_1"
+clip_1/stream = ExtResource("8_nm4if")
+clip_1/auto_advance = 0
+clip_2/name = &"Stage_2"
+clip_2/stream = ExtResource("9_8uncb")
+clip_2/auto_advance = 0
+clip_3/name = &"Stage_3"
+clip_3/stream = ExtResource("10_afpn1")
+clip_3/auto_advance = 0
+clip_4/name = &"Stage_4"
+clip_4/stream = ExtResource("11_8k71r")
+clip_4/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 2,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 0
+},
+Vector2i(1, 2): {
+"fade_beats": 2,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 0
+},
+Vector2i(2, 3): {
+"fade_beats": 2,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 0
+},
+Vector2i(3, 4): {
+"fade_beats": 2,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 0
+},
+Vector2i(4, -1): {
+"fade_beats": 2,
+"fade_mode": 4,
+"from_time": 1,
+"to_time": 0
+}
+}
+
+[node name="AudioManager" type="Node2D" node_paths=PackedStringArray("bgm_player")]
 script = ExtResource("1_4ny1x")
 sound_effects = Array[ExtResource("2_e1ggh")]([ExtResource("3_71jty"), ExtResource("4_hjngx"), ExtResource("5_piknc"), ExtResource("6_r2p8h")])
+bgm_player = NodePath("BGMPlayer")
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_gte38")
+volume_db = -4.426
+max_polyphony = 2
