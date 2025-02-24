@@ -12,7 +12,7 @@ func _ready() -> void:
 	handle_connecting_signals()
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/world.tscn")
+	get_tree().change_scene_to_file("res://scenes/loadingScreen.tscn")
 
 func _on_options_pressed() -> void:
 	vbox_container.visible = false
@@ -27,7 +27,6 @@ func on_exit_options_menu() -> void:
 	options_menu.visible = false
 
 func handle_connecting_signals() -> void:
-	
 	start_button.pressed.connect(_on_start_pressed)
 	options_button.pressed.connect(_on_options_pressed)
 	exit_button.pressed.connect(_on_exit_pressed)
